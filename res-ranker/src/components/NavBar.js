@@ -14,17 +14,17 @@ const NavBar = (props) => {
       </li>
       <li>
         <NavLink to="/home" >
-          Home
+          Add Visit
         </NavLink>
       </li>
       <li>
-        <NavLink to="/about">
-          About Us
+        <NavLink to="/user-page">
+          Your Page
         </NavLink>
       </li>
       <li>
         <NavLink to="/contact">
-          Contact Us
+          Add Restaurants
         </NavLink>
       </li>
     </ul>

@@ -113,6 +113,61 @@ ul.topnav li.right {float: right;}
 
 /* End User Show Page */
 
+/* add 5 restaurants page */
+.add-multiple-restaurants-page {
+
+}
+
+.add-multi-res-header {
+  border-bottom: solid;
+}
+
+.add-multi-res-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.add-multi-box {
+  padding-top: 20px;
+
+  width: 50%;
+}
+
+.search-multi-component {
+  text-align: center;
+  padding-top: 20px;
+}
+
+.small-restaurant-component {
+  display: flex;
+  flex-direction: row;
+  overflow:hidden;
+  text-align: left;
+  border: solid;
+}
+
+.small-restaurant-component-img {
+  width: 40%;
+  height: 150px;
+
+}
+.small-restaurant-component-img img{
+  margin: 15%;
+  width: 80%;
+  height: 80%;
+}
+
+.small-restaurant-component-info{
+  padding-left: 20px;
+  margin-top: 10%;
+  width: 60%;
+  justify-content: center;
+  text-align: center;
+  align-items: baseline;
+}
+/* end of add 5 restaurants page */
+
+
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  }
 

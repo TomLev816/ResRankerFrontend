@@ -11,6 +11,8 @@ import HomePage from './containers/HomePage'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import UserShowPage from './containers/UserShowPage'
+import AddMultipleRestaurants from './containers/AddMultipleRestaurants'
+
 
 class App extends Component {
 
@@ -35,6 +37,8 @@ class App extends Component {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <Route path='/user-page' component={UserShowPage} />
+            <Route path='/add-restaurants' component={AddMultipleRestaurants} />
+
           </div>
         </Router>
       </div>

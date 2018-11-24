@@ -55,6 +55,7 @@ class Signup extends Component {
     const {firstName, lastName, username, password, image_src} = this.state
     return (
       <div className='signup-page'>
+        {this.state.redirect ? <Redirect to='/add-restaurants' /> : null}
         <form onSubmit={this.handleSubmit}>
           <label>
             First Name
@@ -83,7 +84,6 @@ class Signup extends Component {
           <br></br>
           <input type='submit'/>
         </form>
-        {this.state.redirect ? <Redirect to='/user-page' /> : null}
       </div>
     );
   }
