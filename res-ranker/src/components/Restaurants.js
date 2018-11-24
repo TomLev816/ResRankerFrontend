@@ -1,19 +1,20 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { connect } from 'react-redux'
 
-
-export default class Restaurant extends Component {
-
-  renderRestaurnat = () => {
-    this.props.allRestaurants.map(restaurant => console.log(restaurant.name))
-  }
-
-  render() {
-    return (
-      <div>
-        restaurant Page
-        {this.renderRestaurnat()}
-      </div>
-    );
-  }
-
+function Restaurants(props) {
+  return (
+    <div>
+      {props.allRestaurants.map(rest => console.log(rest.name))}
+    </div>
+  );
 }
+
+
+
+const mapStateToProps = (state) => {
+  return {
+    allRestaurants: state.allRestaurants
+  }
+}
+
+export default connect(mapStateToProps)(Restaurants)

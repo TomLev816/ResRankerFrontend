@@ -1,32 +1,136 @@
-.App {
+
+/* Small devices (landscape phones, 576px and up) */
+
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) {  }
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .home-main-container {
+    display: flex;
+  }
+
+  .home-half-container {
+    width: 50%;
+  }
+}
+
+
+
+
+/* NavBar CSS */
+ul.topnav {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #333;
+}
+
+ul.topnav li {float: left;}
+
+ul.topnav li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+}
+
+ul.topnav li a:hover:not(.active) {background-color: #111;}
+
+ul.topnav li a.active {background-color: #4CAF50;}
+
+ul.topnav li.right {float: right;}
+
+@media screen and (max-width: 600px){
+    ul.topnav li.right,
+    ul.topnav li {float: none;}
+}
+/* End NavBar CSS */
+
+/* Login page */
+.login-page-contianer .app-name {
+  text-align-last: center;
+}
+
+.login-form {
+  display: flex;
+
+}
+
+.half-login {
+  width: 50%;
+
+}
+/* End Login page CSS*/
+
+/* User Show Page */
+.user-show-page {
+  margin: 10px 50px ;
+  display: flex;
+  flex-direction: row;
+}
+
+.user-side-of-page {
+  width: 33%;
+  border-right: solid;
   text-align: center;
 }
 
-.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 40vmin;
+.user-pic img{
+  padding-top: 5%;
+  width: 80%
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.restaurant-side-of-page {
+  width: 67%;
+  text-align: center;
+}
+
+.user-show-restaurant-visit {
+  padding: 20px;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.rank-of-restaurant {
+  font-size: 1.25em;
+  width: 10%;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.photo-of-restaurant{
+  width: 33%;
+}
+.photo-of-restaurant img{
+  max-height: 150px;
+  width: 100%;
+}
+
+.info-on-visit {
+  width: 57%;
+}
+
+/* End User Show Page */
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {  }
+
+@media (max-width: 576px) {
+  .user-show-page {
+    margin: 10px 50px ;
+    display: flex;
+    flex-direction: column;
   }
-  to {
-    transform: rotate(360deg);
+
+  .user-side-of-page {
+    width: 100%;
+    border: none;
+    text-align: center;
   }
+
+  .restaurant-side-of-page {
+    width: 100%;
+  }
+
 }

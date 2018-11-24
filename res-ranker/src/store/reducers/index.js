@@ -1,8 +1,12 @@
 import { combineReducers } from "redux";
 import allRestaurants from "./allRestaurants";
+import allUsers from "./allUsers";
+import userLoggedIn from './userLoggedIn'
 
 const rootReduce = combineReducers({
-  team1Roster: allRestaurants
+  allRestaurants: allRestaurants,
+  allUsers : allUsers,
+  userLoggedIn: userLoggedIn
 });
 
 export default rootReduce;
