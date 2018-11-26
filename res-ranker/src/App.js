@@ -64,6 +64,6 @@ const exposeAll = connect(
   mapDispatchToProps
 );
 
-const connectedApp = exposeAll(App); //Why app there? IDK
+const connectedApp = exposeAll(App);
 
 export default connectedApp;

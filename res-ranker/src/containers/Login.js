@@ -2,6 +2,8 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import { userLoggedInAction } from '../store/actions/'
+import { rankedRestaurantsAction } from '../store/actions/'
+
 import { Redirect} from 'react-router-dom'
 
 class Login extends Component {
@@ -22,6 +24,7 @@ class Login extends Component {
     let user = this.props.allUsers.filter(user => user.username === this.state.username)[0]
     if (user) {
       this.props.userLoggedInFunction(user);
+      this.props.newRankedRestaurantFunction(user.user_restaurant_rankings)
       return <Redirect to='/user-page' />
       }
     else {
@@ -29,9 +32,8 @@ class Login extends Component {
     }
   }
 
-
   render() {
-    console.log(this.props.userLoggedIn);
+    // console.log(this.props.userLoggedIn);
     if (this.props.userLoggedIn) {
      return <Redirect to='/user-page' />
     }
@@ -84,7 +86,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLoggedInFunction: user => dispatch(userLoggedInAction(user))
+    userLoggedInFunction: user => dispatch(userLoggedInAction(user)),
+    newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants))
   }
 }
 

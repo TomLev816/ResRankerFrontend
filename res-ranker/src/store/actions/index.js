@@ -21,3 +21,11 @@ export const userLoggedInAction = (user) => {
     payload: user
   }
 }
+
+export const rankedRestaurantsAction = (newRestaurantRanking) => {
+  console.log(newRestaurantRanking)
+  return {
+    type: "CHANGE_RANKED_LIST",
+    payload: newRestaurantRanking
+  }
+}

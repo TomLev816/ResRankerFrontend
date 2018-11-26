@@ -31,9 +31,10 @@ class Signup extends Component {
           first: firstName,
           last: lastName,
           username: username,
-          restaurants_visited: 0,
+          visit_count: 0,
           image_src: image_src,
-          total_restaurants_ranked: 0
+          restaurants_ranked: 0,
+          user_restaurant_rankings: []
         }),
         headers:{
           'Content-Type': 'application/json',
@@ -44,10 +45,11 @@ class Signup extends Component {
         .then(user => this.props.userLoggedInFunction(user),
           this.setState({
             redirect: true,
-          })
+          }
+        )
         )
     } else {
-      console.log('form NOT FIlled out yo fill it out son');
+      console.log('form NOT FIlled out yo');
     }
   }
 
