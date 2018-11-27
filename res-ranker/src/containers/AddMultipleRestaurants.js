@@ -46,43 +46,62 @@ class AddMultipleRestaurants extends Component {
     if (!result.destination) {
       return;
     }
+    // console.log(this.props.userLoggedIn.user_restaurant_rankings);
     const rankedRestaurants = reorder(
-      this.props.userLoggedInFunction.user_restaurant_rankings,
+      this.props.userLoggedIn.user_restaurant_rankings,
       result.source.index,
       result.destination.index
     );
-    let newRankUser = {...this.props.userLoggedIn, user_restaurant_rankings: rankedRestaurants}
-    this.props.userLoggedInFunction(newRankUser)
+    console.log(rankedRestaurants);
+    rankedRestaurants.map((rest, index) => {
+      console.log(rest.id, index);
+      fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${rest.id}`, {
+        method: 'PATCH',
+        body: JSON.stringify({
+          ranking: index + 1,
+        }),
+        headers:{
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      })
+      .then(res => res.json())
+      .then(resJson => fetch(`http://localhost:4000/api/v1/users/${this.props.userLoggedIn.id}`)
+        .then(res => res.json())
+        .then(user => this.props.userLoggedInFunction(user))
+      )
+    }) // end of map
   }
 
-  handleSubmit = () => {
-    let rankedRest = []
-    if (this.props.userLoggedIn.user_restaurant_rankings.length > 4) {
-      this.props.userLoggedIn.user_restaurant_rankings.map((restaurant, index) => {
-        return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
-          method: 'POST',
-          body: JSON.stringify({
-            "restaurant_id": restaurant.id,
-            "user_id": this.props.userLoggedIn.id,
-            "ranking": index + 1,
-            "visits": [],
-          }),
-          headers:{
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        })
-        .then(res => res.json())
-        .then(resJson =>  rankedRest.push(resJson))
-      })
-      // let currentUser = {...this.props.userLoggedIn, user_restaurant_rankings: rankedRest}
-      // this.props.userLoggedInFunction(currentUser)
-      // console.log(currentUser);
-      // return <Redirect to='/user-page' />
-    } else {
-      console.log('nonon')
-    }
-  }
+  // handleSubmit = () => {
+  //   let rankedRest = []
+  //   if (this.props.userLoggedIn.user_restaurant_rankings.length > 4) {
+  //     this.props.userLoggedIn.user_restaurant_rankings.map((restaurant, index) => {
+  //       return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
+  //         method: 'POST',
+  //         body: JSON.stringify({
+  //           "restaurant_id": restaurant.id,
+  //           "user_id": this.props.userLoggedIn.id,
+  //           "ranking": index + 1,
+  //           "visits": [],
+  //         }),
+  //         headers:{
+  //           'Content-Type': 'application/json',
+  //           'Accept': 'application/json'
+  //         }
+  //       })
+  //       .then(res => res.json())
+  //       .then(resJson =>  rankedRest.push(resJson))
+  //     })
+  //     // let currentUser = {...this.props.userLoggedIn, user_restaurant_rankings: rankedRest}
+  //     // this.props.userLoggedInFunction(currentUser)
+  //     // console.log(currentUser);
+  //     // return <Redirect to='/user-page' />
+  //   } else {
+  //     console.log('nonon')
+  //   }
+  // }
+
 
   render() {
     console.log(this.props.userLoggedIn.user_restaurant_rankings);
@@ -111,7 +130,11 @@ class AddMultipleRestaurants extends Component {
                 {(provided, snapshot) => (
                   <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
                     <center>Restaurants you've been to</center>
-                    {this.props.userLoggedIn.user_restaurant_rankings ? this.props.userLoggedIn.user_restaurant_rankings.map((item, index) => (
+                    {this.props.userLoggedIn.user_restaurant_rankings ?
+                      this.props.userLoggedIn.user_restaurant_rankings.sort((a, b) => {
+                        return a.ranking-b.ranking
+                      })
+                     .map((item, index) => (
                       <Draggable key={item.id} draggableId={item.id} index={index}>
                         {(provided, snapshot) => (
                           <div
