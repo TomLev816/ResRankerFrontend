@@ -29,3 +29,11 @@ export const rankedRestaurantsAction = (newRestaurantRanking) => {
     payload: newRestaurantRanking
   }
 }
+
+export const visitRestaurantsAction = (visitRestaurant) => {
+  console.log(visitRestaurant);
+  return {
+    type: "VISIT_RESTAURANT",
+    payload: visitRestaurant
+  }
+}

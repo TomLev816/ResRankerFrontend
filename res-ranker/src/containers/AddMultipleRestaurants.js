@@ -6,13 +6,6 @@ import { rankedRestaurantsAction, userLoggedInAction } from '../store/actions/'
 import { Redirect} from 'react-router-dom'
 import DragAndDrop from '../components/DragAndDrop'
 
-// a little function to help us with reordering the result
-
-
-//  Moves an item from one list to another list.
-
-
-
 
 class AddMultipleRestaurants extends Component {
 
