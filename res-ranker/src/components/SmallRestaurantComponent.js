@@ -1,14 +1,17 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { userLoggedInAction, rankedRestaurantsAction } from '../store/actions/'
-// import { Redirect} from 'react-router-dom'
+
 
 const handleClick = (props) => {
   let rankedRes = [...props.rankedRestaurants]
-  console.log(props.restaurant);
-  // rankedRes.filter(rest => rest.name !== props.restaurant.name)
-  rankedRes.push(props.restaurant)
-  props.newRankedRestaurantFunction(rankedRes)
+
+  // check to see if it already exist in ranking
+  let exist = props.rankedRestaurants.filter(rest => rest.name === props.restaurant.name)
+  if (exist.length === 0) {
+    rankedRes.push(props.restaurant)
+    props.newRankedRestaurantFunction(rankedRes)
+  }
 }
 
 function SmallRestaurantComponent(props) {
