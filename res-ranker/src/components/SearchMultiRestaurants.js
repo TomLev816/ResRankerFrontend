@@ -5,14 +5,11 @@ import SmallRestaurantComponent from './SmallRestaurantComponent'
 
 
 class SearchMultiRestaurants extends Component {
-
-
   state = {
     search: '',
     startIndex: 0,
   }
-
-
+  
   handleChange = (event) => {
     if (!event.target.value) {
       this.setState({

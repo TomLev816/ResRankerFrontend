@@ -45,3 +45,11 @@ export const userPageToLoadAction = (userPageToLoad) => {
     payload: userPageToLoad
   }
 }
+
+export const newVisitFormAction = (newVisitForm) => {
+  console.log(newVisitForm);
+  return {
+    type: "CHANGE_VISIT_FORM",
+    payload: newVisitForm
+  }
+}

@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import { userLoggedInAction, rankedRestaurantsAction, visitRestaurantsAction } from '../store/actions/'
-import { Redirect} from 'react-router-dom'
+import { Redirect, NavLink} from 'react-router-dom'
 // import { browserHistory } from 'react-router'
 
 
@@ -31,19 +31,21 @@ const handleClick = (props) => {
     .then(resJson =>  console.log(resJson))
   }
   console.log('here');
-  return <Redirect to='/add-visit'/>
+  // return <Redirect to='/add-new-visit' />
 }
 
 function SmallRestaurantComponent(props) {
   return (
-    <div className='small-restaurant-component' onClick={() => handleClick(props)}>
-      <div className='small-restaurant-component-img'>
-        <img src={props.restaurant.image_src} alt="" />
+    <NavLink to='add-new-visit'>
+      <div className='small-restaurant-component' onClick={() => handleClick(props)}>
+        <div className='small-restaurant-component-img'>
+          <img src={props.restaurant.image_src} alt="" />
+        </div>
+        <div className='small-restaurant-component-info'>
+          <h2>{props.restaurant.name}</h2>
+        </div>
       </div>
-      <div className='small-restaurant-component-info'>
-        <h2>{props.restaurant.name}</h2>
-      </div>
-    </div>
+    </NavLink>
   );
 }
 
