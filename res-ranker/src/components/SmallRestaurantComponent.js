@@ -1,30 +1,14 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { userLoggedInAction } from '../store/actions/'
+import { userLoggedInAction, rankedRestaurantsAction } from '../store/actions/'
 // import { Redirect} from 'react-router-dom'
 
 const handleClick = (props) => {
-  let ranking = props.userLoggedIn.user_restaurant_rankings
-  if (!ranking.includes(props.restaurant)) {
-    fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
-      method: 'POST',
-      body: JSON.stringify({
-        restaurant_id: props.restaurant.id,
-        user_id: props.userLoggedIn.id,
-        ranking: props.userLoggedIn.user_restaurant_rankings.length + 1,
-        visits: []
-      }),
-      headers:{
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      }
-    })
-    .then(res => res.json())
-    .then(resJson => fetch(`http://localhost:4000/api/v1/users/${props.userLoggedIn.id}`)
-      .then(res => res.json())
-      .then(user => props.userLoggedInFunction(user))
-  )
-  }
+  let rankedRes = [...props.rankedRestaurants]
+  console.log(props.restaurant);
+  // rankedRes.filter(rest => rest.name !== props.restaurant.name)
+  rankedRes.push(props.restaurant)
+  props.newRankedRestaurantFunction(rankedRes)
 }
 
 function SmallRestaurantComponent(props) {
@@ -49,7 +33,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLoggedInFunction: user => dispatch(userLoggedInAction(user))
+    userLoggedInFunction: user => dispatch(userLoggedInAction(user)),
+    newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants))
   }
 }
 

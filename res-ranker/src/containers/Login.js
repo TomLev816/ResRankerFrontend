@@ -24,7 +24,9 @@ class Login extends Component {
     let user = this.props.allUsers.filter(user => user.username === this.state.username)[0]
     if (user) {
       this.props.userLoggedInFunction(user);
-      this.props.newRankedRestaurantFunction(user.user_restaurant_rankings)
+      let rankedRes = []
+      user.user_restaurant_rankings.map(urr => rankedRes.push(urr.restaurant))
+      this.props.newRankedRestaurantFunction(rankedRes)
       return <Redirect to='/user-page' />
       }
     else {

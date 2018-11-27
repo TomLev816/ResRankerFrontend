@@ -2,7 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RestaurantUserPage from '../components/RestaurantUserPage.js'
 // import {NavLink} from 'react-router-dom'
-import AddVisit from './AddVisit'
+import AddVisit from '../components/AddVisit'
+import EditRanking from '../components/EditRanking'
+
 
 
 class UserShowPage extends Component {
@@ -11,18 +13,11 @@ class UserShowPage extends Component {
   }
 
   renderRestaurants = () => {
-    console.log(this.props);
-    // console.log(this.props.userLoggedIn.user_restaurant_rankings[0].restaurant.name) Obama
-    console.log(this.props.userLoggedIn);
-    // let ranked = this.props.userLoggedIn.user_restaurant_rankings.sort((a, b) => {
-    let ranked = this.props.userLoggedIn.user_restaurant_rankings.sort((a, b) => {
-      return a.ranking-b.ranking
-    })
-    console.log(ranked);
-    if (ranked) {
+    if (this.props.rankedRestaurants) {
       let rank = 0
-      return ranked.map(rest => {
+      return this.props.rankedRestaurants.map(rest => {
         rank += 1
+        console.log(rest);
         return <RestaurantUserPage rank={rank} key={rest.id} restaurant={rest}/>
       })
     }
@@ -52,12 +47,15 @@ class UserShowPage extends Component {
             <button name='addVisit' onClick={this.handleClick} >Add New Visit</button>
             <br></br>
             <button name='renderRestaurants' onClick={this.handleClick} >View Your Restaurants</button>
+              <br></br>
+            <button name='editRanking' onClick={this.handleClick} >Edit Your Rankings</button>
           </div>
         </div>
         <div className='restaurant-side-of-page'>
           <h1>Restaurants You've Visited</h1>
           {this.state.pageToLoad === 'renderRestaurants' ? this.renderRestaurants() : null}
           {this.state.pageToLoad === 'addVisit' ? <AddVisit /> : null}
+          {this.state.pageToLoad === 'editRanking' ? <EditRanking /> : null}
         </div>
       </div>
     );
