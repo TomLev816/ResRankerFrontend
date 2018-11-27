@@ -52,7 +52,7 @@ class UserShowPage extends Component {
           </div>
         </div>
         <div className='restaurant-side-of-page'>
-          <h1>Restaurants You've Visited</h1>
+          <h1>Restaurants</h1>
           {this.state.pageToLoad === 'renderRestaurants' ? this.renderRestaurants() : null}
           {this.state.pageToLoad === 'addVisit' ? <AddVisit /> : null}
           {this.state.pageToLoad === 'editRanking' ? <EditRanking /> : null}

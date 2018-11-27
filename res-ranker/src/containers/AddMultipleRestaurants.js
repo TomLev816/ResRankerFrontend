@@ -3,54 +3,23 @@ import {connect} from 'react-redux'
 import SearchMultiRestaurants from '../components/SearchMultiRestaurants'
 // import HalfPageRankRestaurants from '../components/HalfPageRankRestaurants'
 import { rankedRestaurantsAction, userLoggedInAction } from '../store/actions/'
-import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import { Redirect} from 'react-router-dom'
+import DragAndDrop from '../components/DragAndDrop'
 
 // a little function to help us with reordering the result
-const reorder = (list, startIndex, endIndex) => {
-  const result = Array.from(list);
-  const [removed] = result.splice(startIndex, 1);
-  result.splice(endIndex, 0, removed);
 
-  return result;
-}
 
 //  Moves an item from one list to another list.
 
-const getItemStyle = (isDragging, draggableStyle) => ({
-  // some basic styles to make the allRestaurants look a bit nicer
-  userSelect: 'none',
-  padding: 8 * 2,
-  margin: `0 0 ${8}px 0`,
-  // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
-  // styles we need to apply on draggables
-  ...draggableStyle
-})
 
-const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
-  padding: 8,
-  width: 250
-})
 
 
 class AddMultipleRestaurants extends Component {
 
+state = {
+  reDirect: false
+}
 
-
-  onDragEnd = (result) => {
-    // dropped outside the list
-    if (!result.destination) {
-      return;
-    }
-    const reRankedRestaurants = reorder(
-      this.props.rankedRestaurants,
-      result.source.index,
-      result.destination.index
-    );
-    this.props.newRankedRestaurantFunction(reRankedRestaurants)
-  }
 
   handleSubmit = () => {
     if (this.props.rankedRestaurants.length > 4) {
@@ -69,7 +38,9 @@ class AddMultipleRestaurants extends Component {
           }
         })
         .then(res => res.json())
-        .then(resJson =>  console.log(resJson))
+        .then(resJson =>  this.setState({
+          reDirect: true,
+        }))
       })
     } else {
       console.log('nonon')
@@ -81,8 +52,8 @@ class AddMultipleRestaurants extends Component {
   render() {
     console.log(this.props.rankedRestaurants);
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
         <div className='add-multiple-restaurants-page'>
+          {this.state.reDirect ? <Redirect to='/user-page' /> : null}
           <div className='add-multi-res-header'>
             <center>
               <h1>Welcome</h1>
@@ -100,38 +71,15 @@ class AddMultipleRestaurants extends Component {
                 <br></br>
                 <button onClick={this.handleSubmit}>Submit Your List</button>
               </center>
-
-              <Droppable droppableId="droppable">
-                {(provided, snapshot) => (
-                  <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-                    <center>Restaurants you've been to</center>
-                    {this.props.rankedRestaurants ?
-                      this.props.rankedRestaurants.map((item, index) => (
-                      <Draggable key={item.id} draggableId={item.id} index={index}>
-                        {(provided, snapshot) => (
-                          <div
-                            ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                            style={getItemStyle( snapshot.isDragging, provided.draggableProps.style
-                          )}>
-                            {item.name}
-                          </div>
-                        )}
-                      </Draggable>
-                    )) : null }
-                    {provided.placeholder}
-                  </div>
-                )}
-              </Droppable>
-
-
-
+              <DragAndDrop />
             </div>
           </div>
         </div>
-      </DragDropContext>
+
     );
   }
 }
+
 
 const mapStateToProps = (state) => {
   return {

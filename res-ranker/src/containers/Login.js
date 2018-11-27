@@ -25,12 +25,15 @@ class Login extends Component {
     if (user) {
       this.props.userLoggedInFunction(user);
       let rankedRes = []
+      user.user_restaurant_rankings.sort(function(a, b){
+        return a.ranking-b.ranking
+      })
       user.user_restaurant_rankings.map(urr => rankedRes.push(urr.restaurant))
       this.props.newRankedRestaurantFunction(rankedRes)
       return <Redirect to='/user-page' />
       }
     else {
-      alert('Enter Correct UserName')
+      alert('Enter Correct Username and Password')
     }
   }
 

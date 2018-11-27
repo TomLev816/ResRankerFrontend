@@ -8,7 +8,7 @@ function AddVisit(props) {
       Add a Visit
       <SearchMultiRestaurants />
     </div>
-  );
+  )
 }
 
 const mapStateToProps = (state) => {
