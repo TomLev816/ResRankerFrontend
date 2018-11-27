@@ -4,13 +4,11 @@ import RestaurantUserPage from '../components/RestaurantUserPage.js'
 // import {NavLink} from 'react-router-dom'
 import AddVisit from '../components/AddVisit'
 import EditRanking from '../components/EditRanking'
+import { userPageToLoadAction } from '../store/actions/'
 
 
 
 class UserShowPage extends Component {
-  state = {
-    pageToLoad: 'renderRestaurants'
-  }
 
   renderRestaurants = () => {
     if (this.props.rankedRestaurants) {
@@ -24,10 +22,7 @@ class UserShowPage extends Component {
   }
 
   handleClick = (event) => {
-    console.log(event.target.name);
-    this.setState({
-      pageToLoad: event.target.name,
-    });
+    this.props.userPageToLoadFunction(event.target.name)
   }
 
   render (){
@@ -53,9 +48,9 @@ class UserShowPage extends Component {
         </div>
         <div className='restaurant-side-of-page'>
           <h1>Restaurants</h1>
-          {this.state.pageToLoad === 'renderRestaurants' ? this.renderRestaurants() : null}
-          {this.state.pageToLoad === 'addVisit' ? <AddVisit /> : null}
-          {this.state.pageToLoad === 'editRanking' ? <EditRanking /> : null}
+          {this.props.userPageToLoad === 'renderRestaurants' ? this.renderRestaurants() : null}
+          {this.props.userPageToLoad === 'addVisit' ? <AddVisit /> : null}
+          {this.props.userPageToLoad === 'editRanking' ? <EditRanking /> : null}
         </div>
       </div>
     );
@@ -65,8 +60,15 @@ class UserShowPage extends Component {
 const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
-    rankedRestaurants: state.rankedRestaurants
+    rankedRestaurants: state.rankedRestaurants,
+    userPageToLoad: state.userPageToLoad
   }
 }
 
-export default connect(mapStateToProps)(UserShowPage)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(UserShowPage)

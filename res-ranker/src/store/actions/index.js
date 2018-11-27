@@ -37,3 +37,11 @@ export const visitRestaurantsAction = (visitRestaurant) => {
     payload: visitRestaurant
   }
 }
+
+export const userPageToLoadAction = (userPageToLoad) => {
+  console.log(userPageToLoad);
+  return {
+    type: "USER_PAGE_TO_LOAD",
+    payload: userPageToLoad
+  }
+}
