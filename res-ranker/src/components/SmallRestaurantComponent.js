@@ -36,7 +36,7 @@ const handleClick = (props) => {
 
 function SmallRestaurantComponent(props) {
   return (
-    <NavLink to='add-new-visit'>
+
       <div className='small-restaurant-component' onClick={() => handleClick(props)}>
         <div className='small-restaurant-component-img'>
           <img src={props.restaurant.image_src} alt="" />
@@ -45,7 +45,7 @@ function SmallRestaurantComponent(props) {
           <h2>{props.restaurant.name}</h2>
         </div>
       </div>
-    </NavLink>
+    
   );
 }
 
