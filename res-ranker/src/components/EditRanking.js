@@ -3,22 +3,22 @@ import DragAndDrop from '../components/DragAndDrop'
 import { connect } from 'react-redux'
 
 const handleClick = ({rankedRestaurants}) => {
-        rankedRestaurants.map((restaurant, index) => {
+  rankedRestaurants.map((restaurant, index) => {
 
-          return fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${restaurant.id}`, {
-            method: 'PATCH',
-            body: JSON.stringify({
-              "ranking": index + 1,
-            }),
-            headers:{
-              'Content-Type': 'application/json',
-              'Accept': 'application/json'
-            }
-          })
-          .then(res => res.json())
-          .then(resJson =>  console.log(resJson))
-        })
-        
+    return fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${restaurant.id}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        "ranking": index + 1,
+      }),
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(resJson =>  console.log(resJson))
+  })
+
 }
 
 

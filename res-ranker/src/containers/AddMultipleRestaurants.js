@@ -16,25 +16,31 @@ state = {
 
   handleSubmit = () => {
     if (this.props.rankedRestaurants.length > 4) {
-      this.props.rankedRestaurants.map((restaurant, index) => {
-        return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
-          method: 'POST',
-          body: JSON.stringify({
-            "restaurant_id": restaurant.id,
-            "user_id": this.props.userLoggedIn.id,
-            "ranking": index + 1,
-            "visits": [],
-          }),
-          headers:{
-            'Content-Type': 'application/json',
-            'Accept': 'application/json'
-          }
-        })
-        .then(res => res.json())
-        .then(resJson =>  this.setState({
-          reDirect: true,
-        }))
+      // this.props.rankedRestaurants.map((restaurant, index) => {
+      //   return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
+      //     method: 'POST',
+      //     body: JSON.stringify({
+      //       "restaurant_id": restaurant.id,
+      //       "user_id": this.props.userLoggedIn.id,
+      //       "ranking": index + 1,
+      //       "visits": [],
+      //     }),
+      //     headers:{
+      //       'Content-Type': 'application/json',
+      //       'Accept': 'application/json'
+      //     }
+      //   })
+      //   .then(res => res.json())
+      //   .then(resJson =>  this.setState({
+      //     reDirect: true,
+      //   }))
+      // })
+      this.setState({
+        reDirect: true,
       })
+
+
+
     } else {
       console.log('nonon')
     }

@@ -14,6 +14,21 @@ const handleClick = (props) => {
   if (exist.length === 0) {
     rankedRes.push(props.restaurant)
     props.newRankedRestaurantFunction(rankedRes)
+    fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
+      method: 'POST',
+      body: JSON.stringify({
+        "restaurant_id": props.restaurant.id,
+        "user_id": props.userLoggedIn.id,
+        "ranking": props.rankedRestaurants.length,
+        "visits": [],
+      }),
+      headers:{
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    })
+    .then(res => res.json())
+    .then(resJson =>  console.log(resJson))
   }
   console.log('here');
   return <Redirect to='/add-visit'/>
