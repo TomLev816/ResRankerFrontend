@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import RestaurantUserPage from '../components/RestaurantUserPage.js'
-// import {NavLink} from 'react-router-dom'
+import {Redirect} from 'react-router-dom'
 import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
 import { userPageToLoadAction } from '../store/actions/'
@@ -41,6 +41,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
             {userPageToLoad === "editRanking" ? null : <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>}
             <br></br>
             {userPageToLoad === "editRanking" ? null : <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>}
+            {userPageToLoad === "editRanking" ? null : <button name='searchRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Search Restaurants</button>}
           </div>
         </div>
         <div className='restaurant-side-of-page'>
@@ -48,6 +49,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
           {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
           {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
           {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
+          {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
         </div>
       </div>
     );

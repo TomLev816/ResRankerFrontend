@@ -13,6 +13,7 @@ import Signup from './containers/Signup'
 import UserShowPage from './containers/UserShowPage'
 import AddMultipleRestaurants from './containers/AddMultipleRestaurants'
 import AddNewVisit from './containers/AddNewVisit'
+import RestaurantInfoPage from './containers/RestaurantInfoPage'
 
 
 class App extends Component {
@@ -40,6 +41,7 @@ class App extends Component {
             <Route path='/user-page' component={UserShowPage} />
             <Route path='/add-restaurants' component={AddMultipleRestaurants} />
             <Route path='/add-new-visit' component={AddNewVisit} />
+            <Route path='/view-restaurants' component={RestaurantInfoPage} />
           </div>
         </Router>
       </div>

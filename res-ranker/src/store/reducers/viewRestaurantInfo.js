@@ -1,4 +1,4 @@
-const defaultRestaurantInfoLoad = false;
+const defaultRestaurantInfoLoad = '';
 
 const restaurantInfoLoad = (state = defaultRestaurantInfoLoad, action) => {
   switch (action.type) {
