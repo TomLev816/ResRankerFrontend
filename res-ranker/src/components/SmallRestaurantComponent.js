@@ -1,7 +1,7 @@
 import React from 'react';
 import {connect} from 'react-redux'
 import {rankedRestaurantsAction, visitRestaurantsAction, userPageToLoadAction } from '../store/actions/'
-import { Redirect, NavLink} from 'react-router-dom'
+// import { Redirect, NavLink} from 'react-router-dom'
 // import { browserHistory } from 'react-router'
 
 

@@ -17,7 +17,7 @@ const handleClick = ({rankedRestaurants, userPageToLoadFunction}) => {
       }
     })
     .then(res => res.json())
-    .then(resJson =>  console.log(resJson))
+    .then(resJson =>  console.log('here',resJson))
   })
   userPageToLoadFunction('renderRestaurants')
 }

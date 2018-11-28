@@ -18,13 +18,10 @@ state = {
     this.props.userPageToLoadFunction('renderRestaurants')
     if (this.props.rankedRestaurants.length > 4) {
       this.props.rankedRestaurants.map((restaurant, index) => {
-        return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
-          method: 'POST',
+        fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${restaurant.id}`, {
+          method: 'PATCH',
           body: JSON.stringify({
-            "restaurant_id": restaurant.id,
-            "user_id": this.props.userLoggedIn.id,
             "ranking": index + 1,
-            "visits": [],
           }),
           headers:{
             'Content-Type': 'application/json',
@@ -35,6 +32,7 @@ state = {
         .then(resJson =>  this.setState({
           reDirect: true,
         }))
+        return ""
       })
     } else {
       console.log('nonon')
