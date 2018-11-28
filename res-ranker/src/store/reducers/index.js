@@ -6,6 +6,7 @@ import rankedRestaurants from './rankedRestaurants'
 import visitRestaurant from './visitRestaurant'
 import userPageToLoad from './userPageToLoad'
 import newVisitForm from './newVisitForm'
+import restaurantInfoLoad from './viewRestaurantInfo'
 
 const rootReduce = combineReducers({
   allRestaurants: allRestaurants,
@@ -14,7 +15,8 @@ const rootReduce = combineReducers({
   rankedRestaurants: rankedRestaurants,
   visitRestaurant: visitRestaurant,
   userPageToLoad: userPageToLoad,
-  newVisitForm: newVisitForm
+  newVisitForm: newVisitForm,
+  restaurantInfoLoad: restaurantInfoLoad
 });
 
 export default rootReduce;

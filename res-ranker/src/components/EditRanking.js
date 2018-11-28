@@ -3,13 +3,12 @@ import DragAndDrop from '../components/DragAndDrop'
 import { connect } from 'react-redux'
 import { userPageToLoadAction } from '../store/actions/'
 
-const handleClick = ({rankedRestaurants, userPageToLoadFunction}) => {
-  rankedRestaurants.map((restaurant, index) => {
-
-    return fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${restaurant.id}`, {
+const handleClick = ({rankedRestaurants, userPageToLoadFunction, userLoggedIn}) => {
+  rankedRestaurants.map((userResRank, index) => {
+    return fetch(`http://localhost:4000/api/v1/user_restaurant_rankings/${userResRank.id}`, {
       method: 'PATCH',
       body: JSON.stringify({
-        "ranking": index + 1,
+        'ranking': index,
       }),
       headers:{
         'Content-Type': 'application/json',
@@ -17,11 +16,9 @@ const handleClick = ({rankedRestaurants, userPageToLoadFunction}) => {
       }
     })
     .then(res => res.json())
-    .then(resJson =>  console.log('here',resJson))
   })
   userPageToLoadFunction('renderRestaurants')
 }
-
 
 function EditRanking(props) {
   return (
@@ -33,19 +30,17 @@ function EditRanking(props) {
   );
 }
 
-
 const mapStateToProps = (state) => {
   return {
-    rankedRestaurants: state.rankedRestaurants
+    rankedRestaurants: state.rankedRestaurants,
+    userLoggedIn: state.userLoggedIn
   }
 }
-
 
 const mapDispatchToProps = (dispatch) => {
   return {
     userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
   }
 }
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(EditRanking)

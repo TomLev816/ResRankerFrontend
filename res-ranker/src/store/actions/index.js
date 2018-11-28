@@ -53,3 +53,46 @@ export const newVisitFormAction = (newVisitForm) => {
     payload: newVisitForm
   }
 }
+
+export const restaurnatInfoLoadAction = (restaurnatInfoLoad) => {
+  console.log(restaurnatInfoLoad);
+  return {
+    type: "RESTAURANT_INFO_LOAD",
+    payload: restaurnatInfoLoad
+  }
+}
+
+
+
+export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedRestaurants) => {
+ return (dispatch) => {
+   dispatch({ type: 'UPDATE_USER_RES_RANK' })
+   fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       'Accept': 'application/json'
+     },
+     body: JSON.stringify({
+       "restaurant_id": restaurant.id,
+       "user_id": userLoggedIn.id,
+       "ranking": rankedRestaurants.length,
+       "visits": [],
+     })
+   })
+     .then(response => {
+       console.log(response)
+       if (response.ok) {
+         return response.json()
+       } else {
+         throw response
+       }
+     })
+     .then(userResRank => {
+       console.log('%c INSIDE .THEN', 'color: navy', userResRank)
+       dispatch({ type: 'CHANGE_RANKED_LIST', payload: [...rankedRestaurants,userResRank ] })
+
+     })
+     .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+ }
+}

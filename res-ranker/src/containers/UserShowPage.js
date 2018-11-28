@@ -12,14 +12,12 @@ let renderRestaurants = (rankedRestaurants, userLoggedIn) => {
     let rank = 0
     return rankedRestaurants.map(rest => {
       rank += 1
-      console.log(rest);
-      return <RestaurantUserPage rank={rank} key={rest.id} user={userLoggedIn} restaurant={rest}/>
+      return <RestaurantUserPage rank={rank} key={rest.id} user={userLoggedIn} restaurantId={rest.restaurant_id}/>
     })
   }
 }
 
 let handleClick = (event, userPageToLoadFunction) => {
-  // console.log(event.target.name);
   userPageToLoadFunction(event.target.name)
 }
 

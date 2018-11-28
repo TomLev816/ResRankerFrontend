@@ -28,7 +28,8 @@ class Login extends Component {
       user.user_restaurant_rankings.sort(function(a, b){
         return a.ranking-b.ranking
       })
-      user.user_restaurant_rankings.map(urr => rankedRes.push(urr.restaurant))
+      console.log(user.user_restaurant_rankings);
+      user.user_restaurant_rankings.map(urr => rankedRes.push(urr))
       this.props.newRankedRestaurantFunction(rankedRes)
       return <Redirect to='/user-page' />
       }

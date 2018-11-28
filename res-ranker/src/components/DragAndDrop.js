@@ -51,6 +51,8 @@ class DragAndDrop extends Component {
   }
 
   render() {
+    //console.log("Rendering DragAndDrop, RankedRestaurants are", this.props.rankedRestaurants);
+    //debugger
     return (
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
@@ -58,18 +60,21 @@ class DragAndDrop extends Component {
             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
               <center>Restaurants you've been to</center>
               {this.props.rankedRestaurants ?
-                this.props.rankedRestaurants.map((item, index) => (
-                <Draggable key={item.id} draggableId={item.id} index={index}>
-                  {(provided, snapshot) => (
-                    <div
-                      ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
-                      style={getItemStyle( snapshot.isDragging, provided.draggableProps.style
-                    )}>
-                      {item.name}
-                    </div>
-                  )}
-                </Draggable>
-              )) : null }
+                this.props.rankedRestaurants.map((item, index) => {
+                  let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
+                  return (
+                    <Draggable key={restaurant.id} draggableId={restaurant.id} index={index}>
+                      {(provided, snapshot) => (
+                        <div
+                          ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
+                          style={getItemStyle( snapshot.isDragging, provided.draggableProps.style
+                        )}>
+                          {restaurant.name}
+                        </div>
+                      )}
+                    </Draggable>
+                )
+              }) : null }
               {provided.placeholder}
             </div>
           )}
@@ -82,6 +87,7 @@ class DragAndDrop extends Component {
 const mapStateToProps = (state) => {
   return {
     rankedRestaurants: state.rankedRestaurants,
+    allRestaurants: state.allRestaurants
   }
 }
 
