@@ -41,6 +41,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
             {userPageToLoad === "editRanking" ? null : <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>}
             <br></br>
             {userPageToLoad === "editRanking" ? null : <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>}
+            <br></br>
             {userPageToLoad === "editRanking" ? null : <button name='searchRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Search Restaurants</button>}
           </div>
         </div>

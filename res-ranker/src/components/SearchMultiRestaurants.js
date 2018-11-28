@@ -9,7 +9,7 @@ class SearchMultiRestaurants extends Component {
     search: '',
     startIndex: 0,
   }
-  
+
   handleChange = (event) => {
     if (!event.target.value) {
       this.setState({
@@ -40,7 +40,7 @@ class SearchMultiRestaurants extends Component {
     const {search, startIndex} = this.state
     return this.props.allRestaurants
       .filter(restaurant => restaurant.name.toLowerCase().includes(search.toLowerCase()))
-      .slice(startIndex, startIndex + 5)
+      .slice(startIndex, startIndex + 10)
       .map(restaurant => <SmallRestaurantComponent key={restaurant.id} restaurant={restaurant} />)
   }
 
