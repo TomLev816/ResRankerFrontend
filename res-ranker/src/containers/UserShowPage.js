@@ -2,59 +2,58 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux'
 import RestaurantUserPage from '../components/RestaurantUserPage.js'
 // import {NavLink} from 'react-router-dom'
-import AddVisit from '../components/AddVisit'
+import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
 import { userPageToLoadAction } from '../store/actions/'
 
 
-
-class UserShowPage extends Component {
-
-  renderRestaurants = () => {
-    if (this.props.rankedRestaurants) {
-      let rank = 0
-      return this.props.rankedRestaurants.map(rest => {
-        rank += 1
-        console.log(rest);
-        return <RestaurantUserPage rank={rank} key={rest.id} restaurant={rest}/>
-      })
-    }
+let renderRestaurants = (rankedRestaurants, userLoggedIn) => {
+  if (rankedRestaurants) {
+    let rank = 0
+    return rankedRestaurants.map(rest => {
+      rank += 1
+      console.log(rest);
+      return <RestaurantUserPage rank={rank} key={rest.id} user={userLoggedIn} restaurant={rest}/>
+    })
   }
+}
 
-  handleClick = (event) => {
-    this.props.userPageToLoadFunction(event.target.name)
-  }
+let handleClick = (event, userPageToLoadFunction) => {
+  // console.log(event.target.name);
+  userPageToLoadFunction(event.target.name)
+}
 
-  render (){
-    console.log(this.props);
+function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction}) {
+
+
     return (
       <div className='user-show-page'>
         <div className='user-side-of-page'>
           <div className='user-pic'>
-            <img src={this.props.userLoggedIn.image_src} alt=''></img>
+            <img src={userLoggedIn.image_src} alt=''></img>
           </div>
           <div className='user-info'>
-            <h1>Username: {this.props.userLoggedIn.username}</h1>
-            <h2>Name: {this.props.userLoggedIn.first}</h2>
-            <h3>Restaurants Visited: {this.props.userLoggedIn.restaurants_visited} </h3>
+            <h1>Username: {userLoggedIn.username}</h1>
+            <h2>Name: {userLoggedIn.first}</h2>
+            <h3>Restaurants Visited: {userLoggedIn.restaurants_visited} </h3>
           </div>
           <div className='add-buttons'>
-            <button name='addVisit' onClick={this.handleClick} >Add New Visit</button>
+            {userPageToLoad === "editRanking" ? null : <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>}
             <br></br>
-            <button name='renderRestaurants' onClick={this.handleClick} >View Your Restaurants</button>
-              <br></br>
-            <button name='editRanking' onClick={this.handleClick} >Edit Your Rankings</button>
+            {userPageToLoad === "editRanking" ? null : <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>}
+            <br></br>
+            {userPageToLoad === "editRanking" ? null : <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>}
           </div>
         </div>
         <div className='restaurant-side-of-page'>
           <h1>Restaurants</h1>
-          {this.props.userPageToLoad === 'renderRestaurants' ? this.renderRestaurants() : null}
-          {this.props.userPageToLoad === 'addVisit' ? <AddVisit /> : null}
-          {this.props.userPageToLoad === 'editRanking' ? <EditRanking /> : null}
+          {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
+          {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
+          {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
         </div>
       </div>
     );
-  }
+
 }
 
 const mapStateToProps = (state) => {

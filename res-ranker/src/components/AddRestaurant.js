@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import SearchMultiRestaurants from '../components/SearchMultiRestaurants'
 
-function AddVisit(props) {
+function AddRestaurant(props) {
   return (
     <div>
       Add a Visit
@@ -18,4 +18,4 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(AddVisit)
+export default connect(mapStateToProps)(AddRestaurant)

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import {connect} from 'react-redux'
 import SearchMultiRestaurants from '../components/SearchMultiRestaurants'
 // import HalfPageRankRestaurants from '../components/HalfPageRankRestaurants'
-import { rankedRestaurantsAction, userLoggedInAction } from '../store/actions/'
+import { rankedRestaurantsAction, userLoggedInAction, userPageToLoadAction } from '../store/actions/'
 import { Redirect} from 'react-router-dom'
 import DragAndDrop from '../components/DragAndDrop'
 
@@ -15,32 +15,27 @@ state = {
 
 
   handleSubmit = () => {
+    this.props.userPageToLoadFunction('renderRestaurants')
     if (this.props.rankedRestaurants.length > 4) {
-      // this.props.rankedRestaurants.map((restaurant, index) => {
-      //   return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
-      //     method: 'POST',
-      //     body: JSON.stringify({
-      //       "restaurant_id": restaurant.id,
-      //       "user_id": this.props.userLoggedIn.id,
-      //       "ranking": index + 1,
-      //       "visits": [],
-      //     }),
-      //     headers:{
-      //       'Content-Type': 'application/json',
-      //       'Accept': 'application/json'
-      //     }
-      //   })
-      //   .then(res => res.json())
-      //   .then(resJson =>  this.setState({
-      //     reDirect: true,
-      //   }))
-      // })
-      this.setState({
-        reDirect: true,
+      this.props.rankedRestaurants.map((restaurant, index) => {
+        return fetch('http://localhost:4000/api/v1/user_restaurant_rankings', {
+          method: 'POST',
+          body: JSON.stringify({
+            "restaurant_id": restaurant.id,
+            "user_id": this.props.userLoggedIn.id,
+            "ranking": index + 1,
+            "visits": [],
+          }),
+          headers:{
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+          }
+        })
+        .then(res => res.json())
+        .then(resJson =>  this.setState({
+          reDirect: true,
+        }))
       })
-
-
-
     } else {
       console.log('nonon')
     }
@@ -79,7 +74,6 @@ state = {
   }
 }
 
-
 const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
@@ -92,6 +86,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants)),
     userLoggedInFunction: user => dispatch(userLoggedInAction(user)),
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
   }
 }
 

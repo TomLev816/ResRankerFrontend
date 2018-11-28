@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import { userLoggedInAction, rankedRestaurantsAction, visitRestaurantsAction } from '../store/actions/'
+import {rankedRestaurantsAction, visitRestaurantsAction, userPageToLoadAction } from '../store/actions/'
 import { Redirect, NavLink} from 'react-router-dom'
 // import { browserHistory } from 'react-router'
 
@@ -10,7 +10,6 @@ const handleClick = (props) => {
 
   // check to see if it already exist in ranking
   let exist = props.rankedRestaurants.filter(rest => rest.name === props.restaurant.name)
-  props.visitRestaurantFunction(props.restaurant)
   if (exist.length === 0) {
     rankedRes.push(props.restaurant)
     props.newRankedRestaurantFunction(rankedRes)
@@ -31,7 +30,7 @@ const handleClick = (props) => {
     .then(resJson =>  console.log(resJson))
   }
   console.log('here');
-  // return <Redirect to='/add-new-visit' />
+  props.userPageToLoadFunction('editRanking')
 }
 
 function SmallRestaurantComponent(props) {
@@ -45,7 +44,7 @@ function SmallRestaurantComponent(props) {
           <h2>{props.restaurant.name}</h2>
         </div>
       </div>
-    
+
   );
 }
 
@@ -58,9 +57,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userLoggedInFunction: user => dispatch(userLoggedInAction(user)),
     newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants)),
-    visitRestaurantFunction: visitRestaurant => dispatch(visitRestaurantsAction(visitRestaurant))
+    visitRestaurantFunction: visitRestaurant => dispatch(visitRestaurantsAction(visitRestaurant)),
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
   }
 }
 
