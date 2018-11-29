@@ -1,5 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
+import {viewOrMapAction} from '../store/actions/'
 
 const renderStats = (restaurant, allUsers) => {
 
@@ -41,17 +42,21 @@ const renderStats = (restaurant, allUsers) => {
       <h4>Ranked top 10 by {top10}% of users</h4>
     </div>
   )
-}
+} // end of function
 // <h4>Ranked bad by {bad}% of users</h4>
 
-function RestaurantShow({restaurantInfoLoad, allUsers}) {
+const handleClick = (viewOrMapFunction) => {
+  viewOrMapFunction("map");
+}
+
+function RestaurantShow({restaurantInfoLoad, allUsers, viewOrMapFunction}) {
   return (
     <div>
       <h1>Name: {restaurantInfoLoad.name}</h1>
       <img className='restaurant-view-img' src={restaurantInfoLoad.image_src} alt=""></img>
       <h2>Cusine: {restaurantInfoLoad.cuisine}</h2>
       {renderStats(restaurantInfoLoad, allUsers)}
-
+      <button onClick={() => handleClick(viewOrMapFunction)}>view Map</button>
     </div>
   );
 }
@@ -65,4 +70,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-export default connect(mapStateToProps)(RestaurantShow)
+const mapDispatchToProps = (dispatch) => {
+  return {
+    viewOrMapFunction: viewOrMap => dispatch(viewOrMapAction(viewOrMap)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(RestaurantShow)

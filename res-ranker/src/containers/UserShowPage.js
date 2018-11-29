@@ -1,10 +1,11 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import RestaurantUserPage from '../components/RestaurantUserPage.js'
-import {Redirect} from 'react-router-dom'
+import {Redirect, NavLink} from 'react-router-dom'
 import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
-import { userPageToLoadAction, userMapAction } from '../store/actions/'
+import { userPageToLoadAction } from '../store/actions/'
+
 
 
 let renderRestaurants = (rankedRestaurants, userLoggedIn) => {
@@ -21,12 +22,11 @@ let handleClick = (event, userPageToLoadFunction) => {
   userPageToLoadFunction(event.target.name)
 }
 
-const handleMapClick = (event, userMapLoadFunction, userMapToLoad) => {
-  console.log(userMapToLoad)
+const handleMapClick = (event, userMapLoadFunction ) => {
   userMapLoadFunction(event.target.name)
 }
 
-function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction, userMapToLoad }) {
+function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction }) {
 
     return (
       <div className='user-show-page'>
@@ -52,9 +52,10 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
         <div className='restaurant-side-of-page'>
           <h1>Restaurants</h1>
 
-          <button name='map'onClick={(e) => handleMapClick(e, userMapLoadFunction, userMapToLoad)}>View Your Map</button>
 
-          {userMapToLoad === 'map' ? <Redirect to='/user-map-page' /> : null}
+          <NavLink to="/user-map-page">
+            <button name='map'>View Your Map</button>
+          </NavLink >
 
           {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
           {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
@@ -70,15 +71,13 @@ const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
     rankedRestaurants: state.rankedRestaurants,
-    userPageToLoad: state.userPageToLoad,
-    userMapToLoad: state.userMapToLoad
+    userPageToLoad: state.userPageToLoad
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
-    userMapLoadFunction: userMapToLoad => dispatch(userMapAction(userMapToLoad))
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
 
   }
 }

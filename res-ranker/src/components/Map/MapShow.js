@@ -66,8 +66,7 @@ class MapShow extends Component {
   render() {
     const {viewport} = this.state;
     const {restaurants} = this.props
-    console.log(restaurants);
-    // userLoggedIn.user_restaurant_rankings.map(urr => urr.restaurant.name)
+
 
     return (
       <MapGL

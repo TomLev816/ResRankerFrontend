@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import MapShow from '../components/Map/MapShow'
-import { userMapAction } from '../store/actions/'
+
 
 
 const UserMapPage = (props) => {
@@ -34,11 +34,5 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    userMapLoadFunction: userMapToLoad => dispatch(userMapAction(userMapToLoad))
 
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(UserMapPage)
+export default connect(mapStateToProps)(UserMapPage)

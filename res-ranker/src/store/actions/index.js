@@ -70,13 +70,6 @@ export const viewOrMapAction = (viewOrMap) => {
   }
 }
 
-export const userMapAction = (userMapToLoad) => {
-  console.log(userMapToLoad);
-  return {
-    type: "USER_MAP_TO_LOAD",
-    payload: userMapToLoad
-  }
-}
 
 
 
