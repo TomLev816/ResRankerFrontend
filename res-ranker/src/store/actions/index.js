@@ -62,6 +62,14 @@ export const restaurnatInfoLoadAction = (restaurnatInfoLoad) => {
   }
 }
 
+export const viewOrMapAction = (viewOrMap) => {
+  console.log(viewOrMap);
+  return {
+    type: "VIEW_OR_MAP_TO_LOAD",
+    payload: viewOrMap
+  }
+}
+
 
 
 export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedRestaurants) => {

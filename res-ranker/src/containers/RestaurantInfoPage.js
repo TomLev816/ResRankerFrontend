@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import { userPageToLoadAction } from '../store/actions/'
 import SmallViewRestaurantComponent from '../components/SmallViewRestaurantComponent'
+import RestaurantShow from '../components/RestaurantShow'
+import MapShow from '../components/Map/MapShow'
 
 
 class RestaurantInfoPage extends Component {
@@ -19,7 +21,7 @@ filterRestaurntsWithSearch = () => {
   const {search, startIndex} = this.state
   return this.props.allRestaurants
     .filter(restaurant => restaurant.name.toLowerCase().includes(search.toLowerCase()))
-    .slice(startIndex, startIndex + 10)
+    .slice(startIndex, startIndex + 5)
     .map(restaurant => <SmallViewRestaurantComponent key={restaurant.id} restaurant={restaurant} />)
 }
 
@@ -57,19 +59,20 @@ handleChange = (event) => {
       <div>
           {this.props.userPageToLoad !== 'searchRestaurants' ?  <Redirect to={'/user-page'} /> : null}
         <div>
-          RestaurantInfoPage
+          <h2>Restaurants</h2>
           <button onClick={this.BacktoUserPage}>Back to User Page</button>
         </div>
-        <div>
-          <div className='search-multi-component' >
+        <div className='restaurant-info-view-page'>
+          <div className='search-multi-component-third' >
             <input name='search'className='search-bar' value={search} onChange={this.handleChange}/>
             {this.filterRestaurntsWithSearch()}
             <br></br>
             <button name='previous' onClick={this.changeRestaurants}> Get Previous Restaurants </button>
             <button name='next' onClick={this.changeRestaurants}> Get More Restaurants </button>
           </div>
-          <div className='restaurantViewHalf'>
-            
+          <div className='restaurantViewTwoThirds'>
+            {this.props.viewOrMap === 'view' ? <RestaurantShow /> : null }
+            {this.props.viewOrMap === 'map' ? <MapShow /> : null }
           </div>
         </div>
       </div>
@@ -98,13 +101,14 @@ const mapStateToProps = (state) => {
   return {
     allRestaurants: state.allRestaurants,
     restaurantInfoLoad: state.restaurantInfoLoad,
-    userPageToLoad: state.userPageToLoad
+    userPageToLoad: state.userPageToLoad,
+    viewOrMap: state.viewOrMap,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
   }
 }
 

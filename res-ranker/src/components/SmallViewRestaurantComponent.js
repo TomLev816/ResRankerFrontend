@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux'
-import {rankedRestaurantsAction, visitRestaurantsAction, userPageToLoadAction, creatNewUserRestaurantRank } from '../store/actions/'
+import {rankedRestaurantsAction, restaurnatInfoLoadAction, userPageToLoadAction, viewOrMapAction} from '../store/actions/'
 // import RestaurantInfoPage from './RestaurantInfoPage'
 // import { Redirect} from 'react-router-dom'
 // import { browserHistory } from 'react-router'
@@ -8,6 +8,8 @@ import {rankedRestaurantsAction, visitRestaurantsAction, userPageToLoadAction, c
 
 const handleClick = (props) => {
   console.log(props)
+  props.viewRestaurantInfoFunction(props.restaurant)
+  props.viewOrMapFunction('view')
 }
 
 
@@ -37,9 +39,9 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants)),
-    visitRestaurantFunction: visitRestaurant => dispatch(visitRestaurantsAction(visitRestaurant)),
+    viewRestaurantInfoFunction: viewRestaurant => dispatch(restaurnatInfoLoadAction(viewRestaurant)),
     userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
-    creatNewUserRestaurantRank: (restaurant, userLoggedIn, rankedRestaurants) => dispatch(creatNewUserRestaurantRank(restaurant, userLoggedIn, rankedRestaurants)),
+    viewOrMapFunction: viewOrMap => dispatch(viewOrMapAction(viewOrMap)),
   }
 }
 

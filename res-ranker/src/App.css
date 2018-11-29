@@ -167,6 +167,25 @@ ul.topnav li.right {float: right;}
 }
 /* end of add 5 restaurants page */
 
+.restaurant-info-view-page {
+  display: flex;
+  flex-direction: row;
+}
+
+.search-multi-component-third {
+  width: 33%;
+}
+
+.restaurantViewTwoThirds {
+  width: 66%;
+  text-align: left;
+}
+
+.restaurant-view-img {
+  width: 50%;
+  max-height: 300px;
+}
+
 
 /* Extra large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {  }
