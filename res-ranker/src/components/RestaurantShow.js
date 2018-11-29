@@ -41,7 +41,6 @@ const renderStats = (restaurant, allUsers) => {
       <h4>Ranked top 10 by {top10}% of users</h4>
     </div>
   )
-
 }
 // <h4>Ranked bad by {bad}% of users</h4>
 

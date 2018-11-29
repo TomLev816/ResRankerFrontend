@@ -25,6 +25,15 @@ filterRestaurntsWithSearch = () => {
     .map(restaurant => <SmallViewRestaurantComponent key={restaurant.id} restaurant={restaurant} />)
 }
 
+mapFilterRestaurntsWithSearch = () => {
+  const {search, startIndex} = this.state
+  let restShowing = this.props.allRestaurants
+    .filter(restaurant => restaurant.name.toLowerCase().includes(search.toLowerCase()))
+    .slice(startIndex, startIndex + 5)
+  console.log(restShowing);
+  return this.props.viewOrMap === 'map' ? <MapShow restaurants={restShowing} /> : null 
+}
+
 changeRestaurants = (event) => {
   const {startIndex} = this.state
   if (event.target.name === 'next') {
@@ -72,7 +81,7 @@ handleChange = (event) => {
           </div>
           <div className='restaurantViewTwoThirds'>
             {this.props.viewOrMap === 'view' ? <RestaurantShow /> : null }
-            {this.props.viewOrMap === 'map' ? <MapShow /> : null }
+            {this.mapFilterRestaurntsWithSearch()}
           </div>
         </div>
       </div>

@@ -5,7 +5,7 @@ import MapGL, {Marker, Popup, NavigationControl} from 'react-map-gl';
 
 
 import RestaurantPin from './RestaurantPin';
-// import RestaurantInfoMap from './RestaurnatInfoMap';
+import RestaurantInfoMap from './RestaurantInfoMap';
 
 
 
@@ -24,9 +24,9 @@ class MapShow extends Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 37.785164,
-        longitude: -100,
-        zoom: 3.5,
+        latitude: 40.73,
+        longitude: -73.95,
+        zoom: 11,
         bearing: 0,
         pitch: 0
       },
@@ -38,13 +38,13 @@ class MapShow extends Component {
     this.setState({viewport});
   }
 
-  _renderCityMarker = (city, index) => {
+  _renderRestaurantMarker = (restaurant, index) => {
     return (
       <Marker
         key={`marker-${index}`}
-        longitude={city.longitude}
-        latitude={city.latitude} >
-        <RestaurantPin size={20} onClick={() => this.setState({popupInfo: city})} />
+        longitude={restaurant.location_long}
+        latitude={restaurant.location_lat} >
+        <RestaurantPin size={20} onClick={() => this.setState({popupInfo: restaurant})} />
       </Marker>
     );
   }
@@ -55,17 +55,20 @@ class MapShow extends Component {
     return popupInfo && (
       <Popup tipSize={5}
         anchor="top"
-        longitude={popupInfo.longitude}
-        latitude={popupInfo.latitude}
+        longitude={popupInfo.location_long}
+        latitude={popupInfo.location_lat}
         onClose={() => this.setState({popupInfo: null})} >
-
+         <RestaurantInfoMap restaurant={popupInfo} />
       </Popup>
     );
   }
 
   render() {
-
     const {viewport} = this.state;
+
+    const {userLoggedIn, restaurants} = this.props
+    console.log(restaurants);
+    // userLoggedIn.user_restaurant_rankings.map(urr => urr.restaurant.name)
 
     return (
       <MapGL
@@ -76,7 +79,7 @@ class MapShow extends Component {
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN} >
 
-        { [].map(this._renderCityMarker) }
+        {restaurants.map(this._renderRestaurantMarker) }
 
         {this._renderPopup()}
 
