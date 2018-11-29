@@ -54,7 +54,7 @@ class RestaurantInfoMap extends PureComponent {
     return (
       <div>
         <div>
-          {displayName}
+          <center><h2>{displayName}</h2></center>
         </div>
         <img width={240} src={restaurant.image_src} alt="" />
         <div>

@@ -14,6 +14,7 @@ import UserShowPage from './containers/UserShowPage'
 import AddMultipleRestaurants from './containers/AddMultipleRestaurants'
 import AddNewVisit from './containers/AddNewVisit'
 import RestaurantInfoPage from './containers/RestaurantInfoPage'
+import UserMapPage from './containers/UserMapPage'
 
 
 class App extends Component {
@@ -39,6 +40,7 @@ class App extends Component {
             <Route path='/login' component={Login} />
             <Route path='/signup' component={Signup} />
             <Route path='/user-page' component={UserShowPage} />
+            <Route path='/user-map-page' component={UserMapPage} />
             <Route path='/add-restaurants' component={AddMultipleRestaurants} />
             <Route path='/add-new-visit' component={AddNewVisit} />
             <Route path='/view-restaurants' component={RestaurantInfoPage} />

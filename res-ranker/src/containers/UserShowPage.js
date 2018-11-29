@@ -4,7 +4,7 @@ import RestaurantUserPage from '../components/RestaurantUserPage.js'
 import {Redirect} from 'react-router-dom'
 import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
-import { userPageToLoadAction } from '../store/actions/'
+import { userPageToLoadAction, userMapAction } from '../store/actions/'
 
 
 let renderRestaurants = (rankedRestaurants, userLoggedIn) => {
@@ -21,8 +21,12 @@ let handleClick = (event, userPageToLoadFunction) => {
   userPageToLoadFunction(event.target.name)
 }
 
-function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction}) {
+const handleMapClick = (event, userMapLoadFunction, userMapToLoad) => {
+  console.log(userMapToLoad)
+  userMapLoadFunction(event.target.name)
+}
 
+function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction, userMapToLoad }) {
 
     return (
       <div className='user-show-page'>
@@ -47,6 +51,11 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
         </div>
         <div className='restaurant-side-of-page'>
           <h1>Restaurants</h1>
+
+          <button name='map'onClick={(e) => handleMapClick(e, userMapLoadFunction, userMapToLoad)}>View Your Map</button>
+
+          {userMapToLoad === 'map' ? <Redirect to='/user-map-page' /> : null}
+
           {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
           {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
           {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
@@ -61,13 +70,16 @@ const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
     rankedRestaurants: state.rankedRestaurants,
-    userPageToLoad: state.userPageToLoad
+    userPageToLoad: state.userPageToLoad,
+    userMapToLoad: state.userMapToLoad
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
+    userMapLoadFunction: userMapToLoad => dispatch(userMapAction(userMapToLoad))
+
   }
 }
 
