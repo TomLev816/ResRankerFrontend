@@ -72,7 +72,7 @@ class MapShow extends Component {
       <MapGL
         {...viewport}
         width="100%"
-        height="100%"
+        height="725px"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this._updateViewport}
         mapboxApiAccessToken={TOKEN} >

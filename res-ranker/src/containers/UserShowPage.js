@@ -22,9 +22,6 @@ let handleClick = (event, userPageToLoadFunction) => {
   userPageToLoadFunction(event.target.name)
 }
 
-const handleMapClick = (event, userMapLoadFunction ) => {
-  userMapLoadFunction(event.target.name)
-}
 
 function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction }) {
 
@@ -78,7 +75,6 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
-
   }
 }
 
