@@ -34,22 +34,24 @@ class MapShow extends Component {
     };
   }
 
-  _updateViewport = (viewport) => {
+  updateViewport = (viewport) => {
     this.setState({viewport});
   }
 
-  _renderRestaurantMarker = (restaurant, index) => {
+  renderRestaurantMarker = (restaurant, index) => {
     return (
       <Marker
+        className="on-the-map"
         key={`marker-${index}`}
         longitude={restaurant.location_long}
         latitude={restaurant.location_lat} >
+        
         <RestaurantPin size={20} onClick={() => this.setState({popupInfo: restaurant})} />
       </Marker>
     );
   }
 
-  _renderPopup() {
+  renderPopup() {
     const {popupInfo} = this.state;
 
     return popupInfo && (
@@ -74,15 +76,15 @@ class MapShow extends Component {
         width="100%"
         height="800px"
         mapStyle="mapbox://styles/mapbox/dark-v9"
-        onViewportChange={this._updateViewport}
+        onViewportChange={this.updateViewport}
         mapboxApiAccessToken={TOKEN} >
 
-        {restaurants.map(this._renderRestaurantMarker) }
+        {restaurants.map(this.renderRestaurantMarker) }
 
-        {this._renderPopup()}
+        {this.renderPopup()}
 
         <div className="nav" style={navStyle}>
-          <NavigationControl onViewportChange={this._updateViewport} />
+          <NavigationControl onViewportChange={this.updateViewport} />
         </div>
 
       </MapGL>

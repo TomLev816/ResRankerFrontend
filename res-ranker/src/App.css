@@ -201,17 +201,19 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 
-
-/* .on-the-map span {
-  display: inline-block;
-}
+/* 
 .on-the-map:hover {
   background: rgba(0,0,0,0.8);
   color: #fff;
 }
-.on-the-map:hover span {
+.mapboxgl-marker on-the-map  {
   display: none;
-}  dosent work */
+}
+.map-on-hover:hover  {
+  display: inline-block;
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+} */
 
 
 /* Styling the popups */
