@@ -1,12 +1,15 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-// import {NavLink} from 'react-router-dom'
-import { newVisitFormAction } from '../store/actions/'
+import {Redirect} from 'react-router-dom'
+import { newVisitFormAction, creatNewVisit, userPageToLoadAction } from '../store/actions/'
 // import EditRanking from '../components/EditRanking'
 
 
 
 class AddNewVisit extends Component {
+  state = {
+    redirect: false
+  }
 
   handleChange = (event) => {
     let {newVisitFormChange, newVisitForm } = this.props
@@ -16,17 +19,23 @@ class AddNewVisit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
+    let restToAddVisitTo = this.props.rankedRestaurants.find(rest => rest.restaurant_id === this.props.visitRestaurant.id)
+
     let {date, comment, mealEaten} = this.props.newVisitForm
-    console.log('date:', date, 'comment:', comment, 'mealEaten:', mealEaten);
-
-
+    console.log('ID', restToAddVisitTo.id, 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten);
+    this.props.newVisitToDatabase(restToAddVisitTo.id, date, comment, mealEaten)
     this.props.newVisitFormChange({date: "", comment:"", mealEaten:""})
+    this.props.userPageToLoadFunction('editRanking')
+    this.setState({
+      redirect: true,
+    });
   }
 
   render (){
-    console.log(this.props);
+
     return (
       <div className='user-show-page'>
+        {this.state.redirect ? <Redirect to={'/user-page'}/> : null}
         <div className='user-side-of-page'>
           <div className='user-pic'>
             <img src={this.props.visitRestaurant.image_src} alt=''></img>
@@ -73,13 +82,17 @@ const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
     visitRestaurant: state.visitRestaurant,
-    newVisitForm: state.newVisitForm
+    newVisitForm: state.newVisitForm,
+    rankedRestaurants: state.rankedRestaurants,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    newVisitFormChange: visitFormChange => dispatch(newVisitFormAction(visitFormChange))
+    newVisitFormChange: visitFormChange => dispatch(newVisitFormAction(visitFormChange)),
+    newVisitToDatabase: (restToAddVisitTo, date, comment, mealEaten) => dispatch(creatNewVisit(restToAddVisitTo, date, comment, mealEaten)),
+    userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
+
   }
 }
 

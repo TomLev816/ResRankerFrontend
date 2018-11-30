@@ -70,6 +70,13 @@ export const viewOrMapAction = (viewOrMap) => {
   }
 }
 
+export const addNewVisit = (visit) => {
+  console.log(visit);
+  return {
+    type: "ADD_VISIT",
+    payload: visit
+  }
+}
 
 
 
@@ -91,19 +98,34 @@ export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedResta
        "visits": [],
      })
    })
-     .then(response => {
-       console.log(response)
-       if (response.ok) {
-         return response.json()
-       } else {
-         throw response
-       }
-     })
+     .then(response => response.json())
      .then(userResRank => {
-       console.log('%c INSIDE .THEN', 'color: navy', userResRank)
        dispatch({ type: 'CHANGE_RANKED_LIST', payload: [...rankedRestaurants,userResRank ] })
-
      })
-     .catch(r => r.json().then(e => dispatch({ type: 'FAILED_LOGIN', payload: e.message })))
+ }
+}
+
+export const creatNewVisit = (restToAddVisitTo, date, comment, mealEaten) => {
+ return (dispatch) => {
+   console.log(restToAddVisitTo, date, comment, mealEaten);
+   dispatch({ type: 'CRESTE_NEW_VISIT' })
+   fetch('http://localhost:4000/api/v1/visits', {
+     method: 'POST',
+     headers: {
+       'Content-Type': 'application/json',
+       'Accept': 'application/json'
+     },
+     body: JSON.stringify({
+       "user_restaurant_ranking_id": restToAddVisitTo,
+       "date": date,
+       "comment": comment,
+       "meal_eaten": mealEaten,
+     })
+   })
+     .then(response => response.json())
+     .then(visit => {
+       console.log(visit);
+       dispatch({ type: 'ADD_VISIT', payload: visit })
+     })
  }
 }

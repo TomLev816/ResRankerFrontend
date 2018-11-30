@@ -1,31 +1,45 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {connect} from 'react-redux'
-import {rankedRestaurantsAction, restaurnatInfoLoadAction, userPageToLoadAction, viewOrMapAction} from '../store/actions/'
+import {rankedRestaurantsAction, visitRestaurantsAction, userPageToLoadAction, viewOrMapAction, creatNewUserRestaurantRank} from '../store/actions/'
 // import RestaurantInfoPage from './RestaurantInfoPage'
-// import { Redirect} from 'react-router-dom'
+import { Redirect} from 'react-router-dom'
 // import { browserHistory } from 'react-router'
 
+class SmallViewRestaurantComponent extends Component {
 
-const handleClick = (props) => {
-  console.log(props)
-  props.viewRestaurantInfoFunction(props.restaurant)
-  props.viewOrMapFunction('view')
+  state = {
+    redirect: false
+  }
+
+handleClick = () => {
+  const {rankedRestaurants, restaurant, userLoggedIn } = this.props
+  let exist = rankedRestaurants.filter(rest => rest.restaurant_id === restaurant.id)
+  this.props.visitRestaurantFunction(restaurant)
+  if (exist.length === 0) {
+    this.props.creatNewUserRestaurantRank(restaurant, userLoggedIn, rankedRestaurants)
+  }
+  this.setState({
+    redirect: true,
+  });
 }
 
 
-function SmallViewRestaurantComponent(props) {
-  return (
+  render() {
+    let {restaurant} = this.props
+    return (
 
-      <div className='small-restaurant-component' onClick={() => handleClick(props)}>
-        <div className='small-restaurant-component-img'>
-          <img src={props.restaurant.image_src} alt="" />
+        <div className='small-restaurant-component' onClick={this.handleClick}>
+          {this.state.redirect ? <Redirect to={"/add-new-visit"} /> : null}
+          <div className='small-restaurant-component-img'>
+            <img src={restaurant.image_src} alt="" />
+          </div>
+          <div className='small-restaurant-component-info'>
+            <h2>{restaurant.name}</h2>
+          </div>
         </div>
-        <div className='small-restaurant-component-info'>
-          <h2>{props.restaurant.name}</h2>
-        </div>
-      </div>
 
-  );
+    );
+  }
 }
 
 const mapStateToProps = (state) => {
@@ -39,9 +53,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     newRankedRestaurantFunction: rankedRestaurants => dispatch(rankedRestaurantsAction(rankedRestaurants)),
-    viewRestaurantInfoFunction: viewRestaurant => dispatch(restaurnatInfoLoadAction(viewRestaurant)),
+    visitRestaurantFunction: viewRestaurant => dispatch(visitRestaurantsAction(viewRestaurant)),
     userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad)),
     viewOrMapFunction: viewOrMap => dispatch(viewOrMapAction(viewOrMap)),
+    creatNewUserRestaurantRank: (restaurant, userLoggedIn, rankedRestaurants) => dispatch(creatNewUserRestaurantRank(restaurant, userLoggedIn, rankedRestaurants)),
   }
 }
 

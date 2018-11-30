@@ -200,8 +200,22 @@ ul.topnav li.right {float: right;}
   height: 800px;
   text-align: left;
 }
+
+
+/* .on-the-map span {
+  display: inline-block;
+}
+.on-the-map:hover {
+  background: rgba(0,0,0,0.8);
+  color: #fff;
+}
+.on-the-map:hover span {
+  display: none;
+}  dosent work */
+
+
 /* Styling the popups */
-.mapboxgl-popup {
+/* .mapboxgl-popup {
   max-width: 500px;
 }
 
@@ -209,6 +223,12 @@ ul.topnav li.right {float: right;}
   text-align: center;
   font-family: 'Open Sans', sans-serif;
 }
+div.card {
+  border-radius: 10px;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 1em;
+  box-shadow: 5px 5px 10px rgb(100,121,140, 0.5);
+} */
 
 
 /* Extra large devices (large desktops, 1200px and up) */
