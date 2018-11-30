@@ -9,7 +9,7 @@ import RestaurantInfoMap from './RestaurantInfoMap';
 
 
 
-const TOKEN = 'pk.eyJ1IjoiZGV2bGV2Z3JvdXAiLCJhIjoiY2pwMTVsZXBkMDg3YjN3cWdnamU4czQwaSJ9.e3MR7gYQgh9rSfdM_45TCw'
+const token = 'pk.eyJ1IjoiZGV2bGV2Z3JvdXAiLCJhIjoiY2pwMTVsZXBkMDg3YjN3cWdnamU4czQwaSJ9.e3MR7gYQgh9rSfdM_45TCw'
 
 const navStyle = {
   position: 'absolute',
@@ -45,7 +45,7 @@ class MapShow extends Component {
         key={`marker-${index}`}
         longitude={restaurant.location_long}
         latitude={restaurant.location_lat} >
-        
+
         <RestaurantPin size={20} onClick={() => this.setState({popupInfo: restaurant})} />
       </Marker>
     );
@@ -77,7 +77,7 @@ class MapShow extends Component {
         height="800px"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this.updateViewport}
-        mapboxApiAccessToken={TOKEN} >
+        mapboxApiAccessToken={token} >
 
         {restaurants.map(this.renderRestaurantMarker) }
 

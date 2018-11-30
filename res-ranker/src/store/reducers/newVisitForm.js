@@ -1,4 +1,4 @@
-const defaultNewVisitForm = {date: "", comment: "", mealEaten: ""} ;
+const defaultNewVisitForm = {date: new Date(), comment: "", mealEaten: ""} ;
 
 const newVisitForm = (state = defaultNewVisitForm, action) => {
   switch (action.type) {

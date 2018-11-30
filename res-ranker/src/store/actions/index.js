@@ -14,6 +14,14 @@ export const getUsers = (apiData) => {
   }
 }
 
+export const getVisits = (apiData) => {
+  console.log(apiData)
+  return {
+    type: "LOAD_VISITS_FROM_API",
+    payload: apiData
+  }
+}
+
 export const userLoggedInAction = (user) => {
   console.log(user)
   return {
@@ -105,10 +113,10 @@ export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedResta
  }
 }
 
-export const creatNewVisit = (restToAddVisitTo, date, comment, mealEaten) => {
+export const creatNewVisit = (userResRankId,restaurantId, userID, date, comment, mealEaten, allVisits) => {
+  console.log(userResRankId,restaurantId, userID, date, comment, mealEaten, allVisits);
  return (dispatch) => {
-   console.log(restToAddVisitTo, date, comment, mealEaten);
-   dispatch({ type: 'CRESTE_NEW_VISIT' })
+   dispatch({ type: 'CREATE_NEW_VISIT' })
    fetch('http://localhost:4000/api/v1/visits', {
      method: 'POST',
      headers: {
@@ -116,7 +124,9 @@ export const creatNewVisit = (restToAddVisitTo, date, comment, mealEaten) => {
        'Accept': 'application/json'
      },
      body: JSON.stringify({
-       "user_restaurant_ranking_id": restToAddVisitTo,
+       "user_restaurant_ranking_id": userResRankId,
+       "restaurant_id": restaurantId,
+       "user_id": userID,
        "date": date,
        "comment": comment,
        "meal_eaten": mealEaten,
@@ -124,8 +134,8 @@ export const creatNewVisit = (restToAddVisitTo, date, comment, mealEaten) => {
    })
      .then(response => response.json())
      .then(visit => {
-       console.log(visit);
-       dispatch({ type: 'ADD_VISIT', payload: visit })
+       console.log('the visit ', visit, 'allVisits  ',  allVisits);
+       dispatch({ type: 'NEW_VISIT_RESTAURANT', payload: [...allVisits, visit] })
      })
  }
 }

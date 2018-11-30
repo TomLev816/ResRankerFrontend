@@ -4,7 +4,7 @@ import './App.css';
 // import Users from './components/Users'
 import { connect } from "react-redux";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import { getRestaurants, getUsers } from './store/actions/'
+import { getRestaurants, getUsers, getVisits } from './store/actions/'
 
 import NavBar from './components/NavBar'
 import HomePage from './containers/HomePage'
@@ -15,6 +15,7 @@ import AddMultipleRestaurants from './containers/AddMultipleRestaurants'
 import AddNewVisit from './containers/AddNewVisit'
 import RestaurantInfoPage from './containers/RestaurantInfoPage'
 import UserMapPage from './containers/UserMapPage'
+import ViewVisits from './containers/ViewVisits'
 
 
 class App extends Component {
@@ -27,6 +28,10 @@ class App extends Component {
     fetch('http://localhost:4000/api/v1/users')
       .then(res => res.json())
       .then(resJson => this.props.loadUsersFromApi(resJson))
+
+    fetch('http://localhost:4000/api/v1/visits')
+      .then(res => res.json())
+      .then(resJson => this.props.loadVisitsFromApi(resJson))
   }
 
   render() {
@@ -44,6 +49,8 @@ class App extends Component {
             <Route path='/add-restaurants' component={AddMultipleRestaurants} />
             <Route path='/add-new-visit' component={AddNewVisit} />
             <Route path='/view-restaurants' component={RestaurantInfoPage} />
+            <Route path='/visits' component={ViewVisits} />
+
           </div>
         </Router>
       </div>
@@ -60,7 +67,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => ({
   loadRestaurantsFromApi: apiRestaurantData => dispatch(getRestaurants(apiRestaurantData)),
-  loadUsersFromApi: apiUserData => dispatch(getUsers(apiUserData))
+  loadUsersFromApi: apiUserData => dispatch(getUsers(apiUserData)),
+  loadVisitsFromApi: apiVisitData => dispatch(getVisits(apiVisitData)),
 });
 
 

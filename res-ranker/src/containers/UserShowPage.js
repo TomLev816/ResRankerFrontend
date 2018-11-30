@@ -39,11 +39,17 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
           <div className='add-buttons'>
             {userPageToLoad === "editRanking" ? null : <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>}
             <br></br>
+
             {userPageToLoad === "editRanking" ? null : <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>}
             <br></br>
+
             {userPageToLoad === "editRanking" ? null : <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>}
             <br></br>
+
             {userPageToLoad === "editRanking" ? null : <button name='searchRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Search Restaurants</button>}
+            <br></br>
+
+            {userPageToLoad === "editRanking" ? null : <button name='viewVisits' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Visits</button>}
           </div>
         </div>
         <div className='restaurant-side-of-page'>
@@ -58,6 +64,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
           {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
           {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
           {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
+          {userPageToLoad === 'viewVisits' ? <Redirect to={'/visits'} /> : null}
         </div>
       </div>
     );

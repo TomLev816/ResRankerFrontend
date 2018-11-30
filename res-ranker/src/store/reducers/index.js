@@ -8,7 +8,7 @@ import userPageToLoad from './userPageToLoad'
 import newVisitForm from './newVisitForm'
 import restaurantInfoLoad from './viewRestaurantInfo'
 import viewOrMap from './viewOrMap'
-import userVisits from './userVisits'
+import allVisits from './allVisits'
 
 const rootReduce = combineReducers({
   allRestaurants: allRestaurants,
@@ -20,7 +20,7 @@ const rootReduce = combineReducers({
   newVisitForm: newVisitForm,
   restaurantInfoLoad: restaurantInfoLoad,
   viewOrMap: viewOrMap,
-  userVisits: userVisits,
+  allVisits: allVisits
 });
 
 export default rootReduce;

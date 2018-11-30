@@ -62,6 +62,7 @@ class DragAndDrop extends Component {
               {this.props.rankedRestaurants ?
                 this.props.rankedRestaurants.map((item, index) => {
                   let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
+                  console.log(restaurant)
                   return (
                     <Draggable key={restaurant.id} draggableId={restaurant.id} index={index}>
                       {(provided, snapshot) => (

@@ -3,7 +3,8 @@ import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import { newVisitFormAction, creatNewVisit, userPageToLoadAction } from '../store/actions/'
 // import EditRanking from '../components/EditRanking'
-
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 class AddNewVisit extends Component {
@@ -17,14 +18,26 @@ class AddNewVisit extends Component {
     newVisitFormChange(formChange)
   }
 
+  handleDateChange = (date) => {
+    let {newVisitFormChange, newVisitForm } = this.props
+    let formChange = {...newVisitForm, 'date':date}
+    newVisitFormChange(formChange)
+  }
+
   handleSubmit = (event) => {
     event.preventDefault()
-    let restToAddVisitTo = this.props.rankedRestaurants.find(rest => rest.restaurant_id === this.props.visitRestaurant.id)
+
+    const {allVisits, visitRestaurant, userLoggedIn, rankedRestaurants } = this.props
+
+    let restToAddVisitTo = rankedRestaurants.find(rest => rest.restaurant_id === visitRestaurant.id)
 
     let {date, comment, mealEaten} = this.props.newVisitForm
-    console.log('ID', restToAddVisitTo.id, 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten);
-    this.props.newVisitToDatabase(restToAddVisitTo.id, date, comment, mealEaten)
-    this.props.newVisitFormChange({date: "", comment:"", mealEaten:""})
+
+    console.log('ID', restToAddVisitTo.id, visitRestaurant.id , userLoggedIn.id , 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten, "Allthe visits", allVisits);
+
+    this.props.newVisitToDatabase(restToAddVisitTo.id,  visitRestaurant.id , userLoggedIn.id,  date, comment, mealEaten, allVisits)
+
+    this.props.newVisitFormChange({date: new Date(), comment:"", mealEaten:""})
     this.props.userPageToLoadFunction('editRanking')
     this.setState({
       redirect: true,
@@ -32,7 +45,7 @@ class AddNewVisit extends Component {
   }
 
   render (){
-
+    console.log(this.props.allVisits);
     return (
       <div className='user-show-page'>
         {this.state.redirect ? <Redirect to={'/user-page'}/> : null}
@@ -49,12 +62,11 @@ class AddNewVisit extends Component {
         <div className='restaurant-side-of-page'>
           <h1>How Was Your Visit {this.props.visitRestaurant.name}</h1>
           <form onSubmit={this.handleSubmit}>
-            <input
+            <DatePicker
               name='date'
-              placeholder='Enter a Date'
-              value={this.props.newVisitForm.date}
-              onChange={this.handleChange}>
-            </input>
+              selected={this.props.newVisitForm.date}
+              onChange={this.handleDateChange}
+            />
             <input
               name='comment'
               type="field"
@@ -76,7 +88,7 @@ class AddNewVisit extends Component {
   }
 }
 
-// date, :comment, :meal_eaten
+
 
 const mapStateToProps = (state) => {
   return {
@@ -84,13 +96,14 @@ const mapStateToProps = (state) => {
     visitRestaurant: state.visitRestaurant,
     newVisitForm: state.newVisitForm,
     rankedRestaurants: state.rankedRestaurants,
+    allVisits: state.allVisits
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
     newVisitFormChange: visitFormChange => dispatch(newVisitFormAction(visitFormChange)),
-    newVisitToDatabase: (restToAddVisitTo, date, comment, mealEaten) => dispatch(creatNewVisit(restToAddVisitTo, date, comment, mealEaten)),
+    newVisitToDatabase: (userResRankId, restaurantId, userID, date, comment, mealEaten, allVisits) => dispatch(creatNewVisit(userResRankId,restaurantId, userID, date, comment, mealEaten, allVisits)),
     userPageToLoadFunction: userPageToLoad => dispatch(userPageToLoadAction(userPageToLoad))
 
   }
