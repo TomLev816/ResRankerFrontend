@@ -1,21 +1,23 @@
 import React from 'react';
 import { connect } from 'react-redux'
+import { userLoggedInAction } from '../store/actions/'
+
 
 
 
 function ViewVisits(props) {
   console.log(props.userLoggedIn);
   console.log(props.allVisits);
+  console.log(props.rankedRestaurants);
 
-let userVisits = []
-userVisits = props.allVisits.filter(visit => visit.user_id === props.userLoggedIn.id)
-console.log(userVisits)
 
+const renderVisits = (props) => {
+}
 
   return (
     <div>
       VISIT PAGE
-
+      {renderVisits(props)}
     </div>
 
   );
@@ -24,9 +26,17 @@ console.log(userVisits)
 const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
-    allVisits: state.allVisits
+    allVisits: state.allVisits,
+    rankedRestaurants: state.rankedRestaurants,
   }
 }
 
 
-export default connect(mapStateToProps)(ViewVisits)
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    userLoggedInFunction: user => dispatch(userLoggedInAction(user)),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(ViewVisits)
