@@ -52,24 +52,20 @@ class Login extends Component {
         <form>
           <div className='login-form'>
             <div className='half-login'>
-              <center>
-                <input
-                  name='username'
-                  placeholder='Username'
-                  value={username}
-                  onChange={this.handleChange}>
-                </input>
-              </center>
+              <input
+                name='username'
+                placeholder='Username'
+                value={username}
+                onChange={this.handleChange}>
+              </input>
             </div>
             <div className='half-login'>
-              <center>
-                <input
-                  name='password'
-                  placeholder='Password'
-                  value={password}
-                  onChange={this.handleChange}>
-                </input>
-              </center>
+              <input
+                name='password'
+                placeholder='Password'
+                value={password}
+                onChange={this.handleChange}>
+              </input>
             </div>
           </div>
           <div className='login-submit'>

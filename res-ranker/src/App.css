@@ -9,11 +9,29 @@
 @media (min-width: 992px) {
   .home-main-container {
     display: flex;
+    padding-top: 50px;
+  }
+
+  .home-main-container .button {
+    width: 150px;
+    height: 25px;
+    border-radius: 25px;
+    font-size: 15px;
+    background-color: rgba(51, 51, 51, 1);
+    color: white
+  }
+
+  .home-main-container .button:hover  {
+    background-color: grey;
   }
 
   .home-half-container {
     width: 50%;
   }
+}
+
+.visits-page {
+  text-align: center;
 }
 
 
@@ -50,6 +68,25 @@ ul.topnav li.right {float: right;}
 }
 /* End NavBar CSS */
 
+/* HomePage */
+.app-welcome {
+  height: 500px;
+  background-image:
+  url('./images/Pier-A-Harbor-House.jpg');
+  background-size: cover;
+  background-position: center center;
+}
+
+.welcome-text {
+  text-align: center;
+  padding-top: 150px;
+  color: white;
+}
+/* end HomePage */
+
+
+
+
 /* Login page */
 .login-page-contianer .app-name {
   text-align-last: center;
@@ -57,14 +94,84 @@ ul.topnav li.right {float: right;}
 
 .login-form {
   display: flex;
-
+  flex-direction: column;
+  align-items: center;
 }
 
-.half-login {
-  width: 50%;
 
+.half-login input {
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 25px;
 }
+
+.login-submit button{
+  margin-top: 20px;
+  width: 150px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 15px;
+  background-color: rgba(51, 51, 51, 1);
+  color: white
+}
+
+.login-submit button:hover  {
+  background-color: grey;
+}
+
 /* End Login page CSS*/
+
+/* Signup Page */
+
+.signup-page {
+  margin-top: 20px;
+  text-align: center;
+}
+
+.welcome-signup{
+  font-size: 40px;
+}
+
+.signup-form input {
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 25px;
+}
+
+.submit-signup input{
+  margin-top: 20px;
+  width: 150px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 15px;
+  background-color: rgba(51, 51, 51, 1);
+  color: white
+}
+
+.submit-signup input:hover  {
+  background-color: grey;
+}
+
+
+
+
+.add-buttons button {
+  margin-top: 20px;
+  width: 150px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 12px;
+  background-color: rgba(51, 51, 51, 1);
+  color: white
+}
+
+.add-buttons button:hover  {
+  background-color: grey;
+}
+
+/* end Signup Page */
 
 /* User Show Page */
 .user-show-page {
@@ -81,8 +188,11 @@ ul.topnav li.right {float: right;}
 
 .user-pic img{
   padding-top: 5%;
-  width: 80%
+  width: 80%;
+  border-radius: 10%;
 }
+
+
 
 .restaurant-side-of-page {
   width: 67%;
@@ -90,26 +200,61 @@ ul.topnav li.right {float: right;}
 }
 
 .user-show-restaurant-visit {
-  padding: 20px;
+  margin: 20px;
   display: flex;
+  align-items: center;
+  max-height: 150px;
+  background-color: rgba(51, 51, 51, 0.5);
+  border-radius: 15px;
 }
 
 .rank-of-restaurant {
   font-size: 1.25em;
   width: 10%;
+  max-height: 150px;
 }
 
 .photo-of-restaurant {
   width: 33%;
 }
 .photo-of-restaurant img{
-  max-height: 150px;
+  max-height: 140px;
   width: 100%;
+  border-radius: 10px;
 }
 
 .info-on-visit {
   width: 57%;
+  max-height: 150px;
+  margin: 0;
 }
+
+
+.rankings-container button {
+  margin-top: 20px;
+  width: 150px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 12px;
+  background-color: rgba(51, 51, 51, 1);
+  color: white
+}
+
+.rankings-container button:hover  {
+  background-color: grey;
+}
+
+.rankings-container {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.drag-info img{
+  width: 300px;
+  height: 200px;
+}
+
 
 /* End User Show Page */
 
@@ -143,7 +288,14 @@ ul.topnav li.right {float: right;}
   flex-direction: row;
   overflow:hidden;
   text-align: left;
-  border: solid;
+  background-color: rgba(51, 51, 51, .6);
+  border-radius: 10px;
+  margin: 20px;
+  align-items: center;
+}
+
+.small-restaurant-component:hover {
+  background-color: rgba(51, 51, 51, .8);
 }
 
 .small-restaurant-component-img {
@@ -155,11 +307,12 @@ ul.topnav li.right {float: right;}
   margin: 15%;
   width: 80%;
   height: 80%;
+  border-radius: 10px;
 }
 
 .small-restaurant-component-info{
   padding-left: 20px;
-  margin-top: 10%;
+
   width: 60%;
   justify-content: center;
   text-align: center;
@@ -201,7 +354,7 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 
-/* 
+/*
 .on-the-map:hover {
   background: rgba(0,0,0,0.8);
   color: #fff;

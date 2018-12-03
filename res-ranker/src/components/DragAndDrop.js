@@ -10,15 +10,15 @@ const getItemStyle = (isDragging, draggableStyle) => ({
   padding: 8 * 2,
   margin: `0 0 ${8}px 0`,
   // change background colour if dragging
-  background: isDragging ? 'lightgreen' : 'grey',
+  background: isDragging ? 'lightgrey' : 'grey',
   // styles we need to apply on draggables
   ...draggableStyle
 })
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'lightblue' : 'lightgrey',
+  background: isDraggingOver ? 'darkgrey' : 'lightgrey',
   padding: 8,
-  width: 250
+  width: 400
 })
 
 
@@ -54,15 +54,14 @@ class DragAndDrop extends Component {
     //console.log("Rendering DragAndDrop, RankedRestaurants are", this.props.rankedRestaurants);
     //debugger
     return (
+      <center>
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
           {(provided, snapshot) => (
             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
-              <center>Restaurants you've been to</center>
               {this.props.rankedRestaurants ?
                 this.props.rankedRestaurants.map((item, index) => {
                   let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
-                  console.log(restaurant)
                   return (
                     <Draggable key={restaurant.id} draggableId={restaurant.id} index={index}>
                       {(provided, snapshot) => (
@@ -70,7 +69,10 @@ class DragAndDrop extends Component {
                           ref={provided.innerRef} {...provided.draggableProps} {...provided.dragHandleProps}
                           style={getItemStyle( snapshot.isDragging, provided.draggableProps.style
                         )}>
-                          {restaurant.name}
+                          <div className='drag-info'>
+                          <h2>{`${index+1}. ${restaurant.name}`}</h2>
+                          <img src={restaurant.image_src} alt=''></img>
+                          </div>
                         </div>
                       )}
                     </Draggable>
@@ -81,6 +83,7 @@ class DragAndDrop extends Component {
           )}
         </Droppable>
       </DragDropContext>
+      </center>
     );
   }
 }

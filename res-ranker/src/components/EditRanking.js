@@ -22,10 +22,12 @@ const handleClick = ({rankedRestaurants, userPageToLoadFunction, userLoggedIn}) 
 
 function EditRanking(props) {
   return (
-    <div>
-      <button onClick={() => handleClick(props)}>Submit Changes</button>
-      <h2>Edit Ranking Your Rankings</h2>
-      <DragAndDrop />
+    <div className='rankings-container'>
+      <center>
+        <button onClick={() => handleClick(props)}>Submit Changes</button>
+        <h2>Edit Ranking Your Rankings</h2>
+        <DragAndDrop />
+      </center>
     </div>
   );
 }

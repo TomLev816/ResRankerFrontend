@@ -27,7 +27,6 @@ function RestaurantUserPage(props) {
         </div>
         <div className='photo-of-restaurant'>
           <img src={restaurant.image_src} alt="" ></img>
-          <button onClick={() => handleEditVisit(props, restaurant)}>Edit Visit</button>
         </div>
         <div className='info-on-visit'>
           <h1>{restaurant.name}</h1>

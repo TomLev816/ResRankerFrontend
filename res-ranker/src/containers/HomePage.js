@@ -8,10 +8,10 @@ export default class Home extends Component {
     return (
       <div>
         <div className='app-welcome'>
-          <center>
+          <div className='welcome-text'>
             <h1>Welcome to ResRanker</h1>
             <h3>Keep track of everywhere You've Eaten</h3>
-          </center>
+          </div>
         </div>
         <div className='home-main-container'>
           <div className='home-half-container'>

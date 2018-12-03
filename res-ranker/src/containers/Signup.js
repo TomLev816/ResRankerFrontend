@@ -58,34 +58,31 @@ class Signup extends Component {
     return (
       <div className='signup-page'>
         {this.state.redirect ? <Redirect to='/add-restaurants' /> : null}
-        <form onSubmit={this.handleSubmit}>
-          <label>
-            First Name
-          </label>
-          <input name='firstName' value={firstName} onChange={this.handleChange} />
-          <br></br>
-          <label>
-            Last Name
-          </label>
-          <input name='lastName' value={lastName} onChange={this.handleChange} />
-          <br></br>
-          <label>
-            Username
-          </label>
-          <input name='username' value={username} onChange={this.handleChange}/>
-          <br></br>
-          <label>
-            Password
-          </label>
-          <input name='password' value={password} onChange={this.handleChange} />
-          <br></br>
-          <label>
-            Image Source
-          </label>
-          <input name='image_src' value={image_src} onChange={this.handleChange} />
-          <br></br>
-          <input type='submit'/>
-        </form>
+        <div className='welcome-signup'>
+          Welcome to ResRanker
+        </div>
+        <div className='signup-form'>
+          <form onSubmit={this.handleSubmit}>
+
+            <input name='firstName' placeholder='Name'  value={firstName} onChange={this.handleChange} />
+            <br></br>
+
+            <input name='lastName'  placeholder='Email' value={lastName} onChange={this.handleChange} />
+            <br></br>
+
+            <input name='username'  placeholder='Username' value={username} onChange={this.handleChange}/>
+            <br></br>
+
+            <input name='password'  placeholder='Password' value={password} onChange={this.handleChange} />
+            <br></br>
+
+            <input name='image_src' placeholder='Image'  value={image_src} onChange={this.handleChange} />
+            <br></br>
+            <div className='submit-signup'>
+              <input type='submit'/>
+            </div>
+          </form>
+        </div>
       </div>
     );
   }

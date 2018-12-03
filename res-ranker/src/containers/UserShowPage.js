@@ -33,8 +33,6 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
           </div>
           <div className='user-info'>
             <h1>Username: {userLoggedIn.username}</h1>
-            <h2>Name: {userLoggedIn.first}</h2>
-            <h3>Restaurants Visited: {userLoggedIn.restaurants_visited} </h3>
           </div>
           <div className='add-buttons'>
             {userPageToLoad === "editRanking" ? null : <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>}

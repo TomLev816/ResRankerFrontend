@@ -102,8 +102,7 @@ export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedResta
      body: JSON.stringify({
        "restaurant_id": restaurant.id,
        "user_id": userLoggedIn.id,
-       "ranking": rankedRestaurants.length,
-       "visits": [],
+       "ranking": rankedRestaurants.length
      })
    })
      .then(response => response.json())
@@ -124,7 +123,6 @@ export const creatNewVisit = (userResRankId,restaurantId, userID, date, comment,
        'Accept': 'application/json'
      },
      body: JSON.stringify({
-       "user_restaurant_ranking_id": userResRankId,
        "restaurant_id": restaurantId,
        "user_id": userID,
        "date": date,

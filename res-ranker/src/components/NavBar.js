@@ -2,7 +2,6 @@ import React from 'react';
 import {NavLink} from 'react-router-dom'
 
 
-
 const NavBar = (props) => {
 
   return (
@@ -31,4 +30,6 @@ const NavBar = (props) => {
   );
 }
 
-export default NavBar
+
+
+export default (NavBar)
