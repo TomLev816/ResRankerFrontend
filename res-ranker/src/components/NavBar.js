@@ -7,13 +7,13 @@ const NavBar = (props) => {
   return (
     <ul className="topnav">
       <li>
-        <NavLink to='/ResRanker' >
+        <NavLink to='/home' >
           ResRanker
         </NavLink>
       </li>
       <li>
-        <NavLink to="/home" >
-          Add Visit
+        <NavLink to="/user-map-page" >
+          See Your Map
         </NavLink>
       </li>
       <li>
@@ -22,7 +22,7 @@ const NavBar = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/contact">
+        <NavLink to="/ResRanker">
           Add Restaurants
         </NavLink>
       </li>

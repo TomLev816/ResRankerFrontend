@@ -9,7 +9,6 @@ import newVisitForm from './newVisitForm'
 import restaurantInfoLoad from './viewRestaurantInfo'
 import viewOrMap from './viewOrMap'
 import allVisits from './allVisits'
-import photos from './photos'
 
 const rootReduce = combineReducers({
   allRestaurants: allRestaurants,
@@ -22,7 +21,6 @@ const rootReduce = combineReducers({
   restaurantInfoLoad: restaurantInfoLoad,
   viewOrMap: viewOrMap,
   allVisits: allVisits,
-  photos: photos
 });
 
 export default rootReduce;

@@ -4,7 +4,9 @@ import RestaurantUserPage from '../components/RestaurantUserPage.js'
 import {Redirect, NavLink} from 'react-router-dom'
 import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
+import ViewVisits from './ViewVisits'
 import { userPageToLoadAction } from '../store/actions/'
+
 
 
 
@@ -15,6 +17,30 @@ let renderRestaurants = (rankedRestaurants, userLoggedIn) => {
       rank += 1
       return <RestaurantUserPage rank={rank} key={rest.id} user={userLoggedIn} restaurantId={rest.restaurant_id}/>
     })
+  }
+}
+
+let renderButtons = (userPageToLoad, userPageToLoadFunction) => {
+  if (userPageToLoad === "editRanking" ) {
+    return null
+  } else {
+    return (
+    <div>
+      <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>
+      <br></br>
+
+      <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>
+      <br></br>
+
+      <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>
+      <br></br>
+
+      <button name='searchRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Search Restaurants</button>
+      <br></br>
+
+      <button name='viewVisits' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Visits</button>
+    </div>
+    )
   }
 }
 
@@ -35,34 +61,19 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
             <h1>Username: {userLoggedIn.username}</h1>
           </div>
           <div className='add-buttons'>
-            {userPageToLoad === "editRanking" ? null : <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>}
-            <br></br>
-
-            {userPageToLoad === "editRanking" ? null : <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>}
-            <br></br>
-
-            {userPageToLoad === "editRanking" ? null : <button name='editRanking' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Edit Your Rankings</button>}
-            <br></br>
-
-            {userPageToLoad === "editRanking" ? null : <button name='searchRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Search Restaurants</button>}
-            <br></br>
-
-            {userPageToLoad === "editRanking" ? null : <button name='viewVisits' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Visits</button>}
+            {renderButtons(userPageToLoad, userPageToLoadFunction)}
           </div>
         </div>
         <div className='restaurant-side-of-page'>
-          <h1>Restaurants</h1>
-
-
-          <NavLink to="/user-map-page">
-            <button name='map'>View Your Map</button>
-          </NavLink >
+          {userPageToLoad === 'renderRestaurants' ? <h1>Restaurants</h1> : null}
+          {userPageToLoad === 'viewVisits' ? <h1>Your Recent Visits</h1> : null}
+          {userPageToLoad === 'editRanking' ? <h1>Edit Your Rankings</h1> : null}
 
           {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
           {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
           {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
           {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
-          {userPageToLoad === 'viewVisits' ? <Redirect to={'/visits'} /> : null}
+          {userPageToLoad === 'viewVisits' ? <ViewVisits /> : null}
         </div>
       </div>
     );

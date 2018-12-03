@@ -154,9 +154,6 @@ ul.topnav li.right {float: right;}
   background-color: grey;
 }
 
-
-
-
 .add-buttons button {
   margin-top: 20px;
   width: 150px;
@@ -184,15 +181,14 @@ ul.topnav li.right {float: right;}
   width: 33%;
   border-right: solid;
   text-align: center;
+
 }
 
 .user-pic img{
-  padding-top: 5%;
+  
   width: 80%;
   border-radius: 10%;
 }
-
-
 
 .restaurant-side-of-page {
   width: 67%;
@@ -215,7 +211,7 @@ ul.topnav li.right {float: right;}
 }
 
 .photo-of-restaurant {
-  width: 33%;
+  width: 25%;
 }
 .photo-of-restaurant img{
   max-height: 140px;
@@ -254,6 +250,7 @@ ul.topnav li.right {float: right;}
   width: 300px;
   height: 200px;
 }
+
 
 
 /* End User Show Page */
@@ -354,6 +351,10 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 
+.drag-info img {
+  border-radius: 20px;
+}
+
 /*
 .on-the-map:hover {
   background: rgba(0,0,0,0.8);
@@ -400,6 +401,7 @@ div.card {
     width: 100%;
     border: none;
     text-align: center;
+    position: fixed;
   }
 
   .restaurant-side-of-page {
