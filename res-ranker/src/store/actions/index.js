@@ -86,6 +86,14 @@ export const addNewVisit = (visit) => {
   }
 }
 
+export const addNewPhoto = (photo) => {
+  console.log(photo);
+  return {
+    type: "ADD_PHOTO",
+    payload: photo
+  }
+}
+
 
 
 
@@ -112,24 +120,13 @@ export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedResta
  }
 }
 
-export const creatNewVisit = (userResRankId,restaurantId, userID, date, comment, mealEaten, allVisits) => {
-  console.log(userResRankId,restaurantId, userID, date, comment, mealEaten, allVisits);
+export const creatNewVisit = (formUpload, allVisits) => {
  return (dispatch) => {
    dispatch({ type: 'CREATE_NEW_VISIT' })
-   fetch('http://localhost:4000/api/v1/visits', {
-     method: 'POST',
-     headers: {
-       'Content-Type': 'application/json',
-       'Accept': 'application/json'
-     },
-     body: JSON.stringify({
-       "restaurant_id": restaurantId,
-       "user_id": userID,
-       "date": date,
-       "comment": comment,
-       "meal_eaten": mealEaten,
-     })
-   })
+   fetch("http://localhost:4000/api/v1/visits", {
+    method: "POST",
+    body: formUpload
+  })
      .then(response => response.json())
      .then(visit => {
        console.log('the visit ', visit, 'allVisits  ',  allVisits);

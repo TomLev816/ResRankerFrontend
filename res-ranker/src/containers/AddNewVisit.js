@@ -5,6 +5,7 @@ import { newVisitFormAction, creatNewVisit, userPageToLoadAction } from '../stor
 // import EditRanking from '../components/EditRanking'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+// import UploadImage from '../components/UploadImage'
 
 
 class AddNewVisit extends Component {
@@ -26,16 +27,34 @@ class AddNewVisit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-
     const {allVisits, visitRestaurant, userLoggedIn, rankedRestaurants } = this.props
-
     let restToAddVisitTo = rankedRestaurants.find(rest => rest.restaurant_id === visitRestaurant.id)
-
     let {date, comment, mealEaten} = this.props.newVisitForm
 
-    console.log('ID', restToAddVisitTo.id, visitRestaurant.id , userLoggedIn.id , 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten, "Allthe visits", allVisits);
+    const image = event.target.querySelector('#file-input').files[0]
+    console.log(image);
+    let formUpload = new FormData()
+    formUpload.append("image", image)
 
-    this.props.newVisitToDatabase(restToAddVisitTo.id,  visitRestaurant.id , userLoggedIn.id,  date, comment, mealEaten, allVisits)
+    let visitData = {
+      "restaurant_id": visitRestaurant.id,
+      "user_id": userLoggedIn.id,
+      "date": date,
+      "comment": comment,
+      "meal_eaten": mealEaten,
+    }
+
+    formUpload.append("visitData", JSON.stringify(visitData))
+
+
+
+
+
+    console.log('ID', visitRestaurant.id , userLoggedIn.id , 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten, "Allthe visits", allVisits);
+
+
+
+    this.props.newVisitToDatabase(formUpload, allVisits)
 
     this.props.newVisitFormChange({date: new Date(), comment:"", mealEaten:""})
     this.props.userPageToLoadFunction('editRanking')
@@ -80,6 +99,7 @@ class AddNewVisit extends Component {
               value={this.props.newVisitForm.mealEaten}
               onChange={this.handleChange}>
             </input>
+            <input type="file" id="file-input"/>
             <input type="submit"></input>
           </form>
         </div>
@@ -90,13 +110,15 @@ class AddNewVisit extends Component {
 
 
 
+
+
 const mapStateToProps = (state) => {
   return {
     userLoggedIn: state.userLoggedIn,
     visitRestaurant: state.visitRestaurant,
     newVisitForm: state.newVisitForm,
     rankedRestaurants: state.rankedRestaurants,
-    allVisits: state.allVisits
+    allVisits: state.allVisits,
   }
 }
 

@@ -23,6 +23,7 @@ const renderVisits = (props) => {
         {restaurantInfo.name}
         {visit.date.slice(0, 10)}
         {visit.comment}
+        <img src={visit.image_url} alt=''></img>
       </div>
     )
   })
