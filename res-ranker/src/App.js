@@ -17,6 +17,7 @@ import RestaurantInfoPage from './containers/RestaurantInfoPage'
 import UserMapPage from './containers/UserMapPage'
 import ViewVisits from './containers/ViewVisits'
 import About from './containers/About'
+import ViewAllVisits from './components/ViewAllVisits'
 
 class App extends Component {
 
@@ -51,6 +52,7 @@ class App extends Component {
             <Route path='/view-restaurants' component={RestaurantInfoPage} />
             <Route path='/visits' component={ViewVisits} />
             <Route path='/about' component={About} />
+            <Route path='/see-visits' component={ViewAllVisits} />
 
           </div>
         </Router>

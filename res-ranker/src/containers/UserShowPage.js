@@ -5,6 +5,7 @@ import {Redirect, NavLink} from 'react-router-dom'
 import AddRestaurant from '../components/AddRestaurant'
 import EditRanking from '../components/EditRanking'
 import ViewVisits from './ViewVisits'
+import ViewAllVisits from '../components/ViewAllVisits'
 import { userPageToLoadAction } from '../store/actions/'
 
 
@@ -37,6 +38,9 @@ let renderButtons = (userPageToLoad, userPageToLoadFunction) => {
       <br></br>
 
       <button name='viewVisits' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Visits</button>
+      <br></br>
+
+      <button name='see-visits' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Everyones Visits</button>
     </div>
     )
   }
@@ -64,15 +68,17 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
         </div>
       </div>
       <div className='restaurant-side-of-page'>
-        {userPageToLoad === 'renderRestaurants' ? <h1>Restaurants</h1> : null}
-        {userPageToLoad === 'viewVisits' ? <h1>Your Recent Visits</h1> : null}
+        {userPageToLoad === 'renderRestaurants' ? <h1>Ranked Restaurants</h1> : null}
+        {userPageToLoad === 'viewVisits' ? <h1>Recent Visits</h1> : null}
         {userPageToLoad === 'editRanking' ? <h1>Edit Your Rankings</h1> : null}
+        {userPageToLoad === 'see-visits' ? <h1>Visits Feed</h1> : null}
 
         {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
 
         {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
         {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
         {userPageToLoad === 'viewVisits' ? <ViewVisits /> : null}
+        {userPageToLoad === 'see-visits' ? <ViewAllVisits /> : null}
       </div>
     </div>
   );
