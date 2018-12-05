@@ -56,7 +56,8 @@ state = {
             <div className='add-multi-box'>
               <center>Search for restaurants you've been to</center>
               <SearchMultiRestaurants />
-          </div>
+            </div>
+            <div className='add-multi-box-border'></div>
             <div className='add-multi-box'>
               <center>
                 Rank the restaurants

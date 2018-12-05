@@ -21,19 +21,19 @@ function RestaurantUserPage(props) {
   // console.log(restaurant);
 
   return (
-      <div className='user-show-restaurant-visit' >
-        <div className='rank-of-restaurant'>
-          <h1>{props.rank}.</h1>
+      <center>
+        <div className='user-show-restaurant-visit' >
+          <div className='rank-of-restaurant'>
+            <h1>{props.rank}.</h1>
+          </div>
+          <div className='photo-of-restaurant'>
+            <img src={restaurant.image_src} alt="" ></img>
+          </div>
+          <div className='info-on-visit'>
+            <h1>{restaurant.name}</h1>
+          </div>
         </div>
-        <div className='photo-of-restaurant'>
-          <img src={restaurant.image_src} alt="" ></img>
-        </div>
-        <div className='info-on-visit'>
-          <h1>{restaurant.name}</h1>
-          <h3>Located: {restaurant.address}</h3>
-          <h3>Cusine: {restaurant.cuisine}</h3>
-        </div>
-      </div>
+      </center>
   );
 }
 

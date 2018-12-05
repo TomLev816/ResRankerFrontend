@@ -6,19 +6,21 @@ import {connect} from 'react-redux'
 
 const getItemStyle = (isDragging, draggableStyle) => ({
   // some basic styles to make the allRestaurants look a bit nicer
+
   userSelect: 'none',
   padding: 8 * 2,
-  margin: `0 0 ${8}px 0`,
+  margin: `0 0 ${16}px 0`,
+  borderRadius: `20px`,
   // change background colour if dragging
-  background: isDragging ? 'lightgrey' : 'grey',
+  background: isDragging ? 'white' : 'grey',
   // styles we need to apply on draggables
   ...draggableStyle
 })
 
 const getListStyle = isDraggingOver => ({
-  background: isDraggingOver ? 'darkgrey' : 'lightgrey',
-  padding: 8,
-  width: 400
+  background: isDraggingOver ? 'darkgrey' : 'white',
+  padding: 15,
+  width: 600,
 })
 
 
@@ -62,6 +64,7 @@ class DragAndDrop extends Component {
               {this.props.rankedRestaurants ?
                 this.props.rankedRestaurants.map((item, index) => {
                   let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
+
                   return (
                     <Draggable key={restaurant.id} draggableId={restaurant.id} index={index}>
                       {(provided, snapshot) => (
@@ -70,14 +73,19 @@ class DragAndDrop extends Component {
                           style={getItemStyle( snapshot.isDragging, provided.draggableProps.style
                         )}>
                           <div className='drag-info'>
-                          <h2>{`${index+1}. ${restaurant.name}`}</h2>
-                          <img src={restaurant.image_src} alt=''></img>
+                            <div className='edit-rank-res-name'>
+                              <h2>{`${index+1}. ${restaurant.name}`}</h2>
+                            </div>
+                            <div className='edit-rank-res-img'>
+                              <img src={restaurant.image_src} alt=''></img>
+                            </div>
                           </div>
                         </div>
                       )}
                     </Draggable>
-                )
-              }) : null }
+                  )
+
+                }) : null }
               {provided.placeholder}
             </div>
           )}

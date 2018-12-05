@@ -9,6 +9,7 @@ class RestaurantInfoMap extends PureComponent {
     let top3 = 0
     let top10 = 0
     let bad = 0
+
     restaurant.user_restaurant_rankings.map(restaurant => {
       if (restaurant.ranking === 0) {
         return first += 1
@@ -37,7 +38,7 @@ class RestaurantInfoMap extends PureComponent {
 
 
     return (
-      <div>
+      <div className='info'>
         <h4>Ranked first by {first}% of users </h4>
         <h4>Ranked top 3 by {top3}% of users</h4>
         <h4>Ranked top 10 by {top10}% of users</h4>
@@ -52,14 +53,16 @@ class RestaurantInfoMap extends PureComponent {
     const displayName = `${restaurant.name}`;
 
     return (
-      <div>
-        <div>
-          <center><h2>{displayName}</h2></center>
-        </div>
-        <img width={240} src={restaurant.image_src} alt="" />
-        <div>
-          {this.renderStats(restaurant)}
-        </div>
+      <div className='pop-up-on-map'>
+        <center>
+          <div  >
+            <center><h2>{displayName}</h2></center>
+          </div>
+          <img width={240} src={restaurant.image_src} alt="" />
+          <div>
+            {this.renderStats(restaurant)}
+          </div>
+        </center>
       </div>
     );
   }

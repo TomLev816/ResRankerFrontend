@@ -66,18 +66,22 @@ handleChange = (event) => {
     const {search} = this.state
     return (
       <div>
-          {this.props.userPageToLoad !== 'searchRestaurants' ?  <Redirect to={'/user-page'} /> : null}
-        <div>
-          <h2>Restaurants</h2>
-          <button onClick={this.BacktoUserPage}>Back to User Page</button>
-        </div>
+        {this.props.userPageToLoad !== 'searchRestaurants' ?  <Redirect to={'/user-page'} /> : null}
         <div className='restaurant-info-view-page'>
           <div className='search-multi-component-third' >
-            <input name='search'className='search-bar' value={search} onChange={this.handleChange}/>
+            <div className='mapButtons'>
+              <button onClick={this.BacktoUserPage}>Back to User Page</button>
+            </div>
+            <div className='search-bar'>
+            <input name='search' value={search} onChange={this.handleChange} placeholder=" Search Restaurants"/>
+            </div>
+            <br></br>
+            <div className='mapButtons'>
+              <button name='previous' onClick={this.changeRestaurants}> Previous</button>
+              <button name='next' onClick={this.changeRestaurants}>Next</button>
+            </div>
             {this.filterRestaurntsWithSearch()}
             <br></br>
-            <button name='previous' onClick={this.changeRestaurants}> Get Previous Restaurants </button>
-            <button name='next' onClick={this.changeRestaurants}> Get More Restaurants </button>
           </div>
           <div className='restaurantViewTwoThirds'>
             {this.props.viewOrMap === 'view' ? <RestaurantShow /> : null }

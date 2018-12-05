@@ -64,44 +64,56 @@ class AddNewVisit extends Component {
   }
 
   render (){
-    console.log(this.props.allVisits);
+    const {visitRestaurant, newVisitForm } = this.props
+    const cusineCapitalized = visitRestaurant.cuisine.charAt(0).toUpperCase() + visitRestaurant.cuisine.slice(1)
     return (
       <div className='user-show-page'>
         {this.state.redirect ? <Redirect to={'/user-page'}/> : null}
         <div className='user-side-of-page'>
           <div className='user-pic'>
-            <img src={this.props.visitRestaurant.image_src} alt=''></img>
+            <img src={visitRestaurant.image_src} alt=''></img>
           </div>
           <div className='user-info'>
-            <h1>Restaurant Name: {this.props.visitRestaurant.name}</h1>
-            <h2>Address: {this.props.visitRestaurant.address}</h2>
-            <h3>Cusine: {this.props.visitRestaurant.cuisine}</h3>
+            <h1>Restaurant Name: {visitRestaurant.name}</h1>
+            <h3>Address: {visitRestaurant.address}</h3>
+            <h3>Cusine: {cusineCapitalized}</h3>
           </div>
         </div>
         <div className='restaurant-side-of-page'>
-          <h1>How Was Your Visit {this.props.visitRestaurant.name}</h1>
-          <form onSubmit={this.handleSubmit}>
-            <DatePicker
-              name='date'
-              selected={this.props.newVisitForm.date}
-              onChange={this.handleDateChange}
-            />
-            <input
-              name='comment'
-              type="field"
-              placeholder='Enter Comment'
-              value={this.props.newVisitForm.comment}
-              onChange={this.handleChange}>
-            </input>
-            <input
-              name='mealEaten'
-              placeholder='Enter Your Meal'
-              value={this.props.newVisitForm.mealEaten}
-              onChange={this.handleChange}>
-            </input>
-            <input type="file" id="file-input"/>
-            <input type="submit"></input>
-          </form>
+          <h1>How Was Your Visit {visitRestaurant.name}</h1>
+          <div className='new-visit-form'>
+            <form onSubmit={this.handleSubmit}>
+
+              <div className='new-visit-date'>
+                <DatePicker
+                  name='date'
+                  selected={newVisitForm.date}
+                  onChange={this.handleDateChange}
+                />
+              </div>
+
+              <div className='new-visit-meal-eaten'>
+                <input
+                  name='mealEaten'
+                  placeholder='Enter Your Meal'
+                  value={newVisitForm.mealEaten}
+                  onChange={this.handleChange}>
+                </input>
+                <div className='new-visit-upload'>
+                  <input type="file" id="file-input"/>
+                </div>
+              </div>
+
+
+            <center>
+              <div className='new-visit-comment'>
+                <textarea name='comment' rows="26" cols="50" value={newVisitForm.comment} placeholder='Enter Comment' onChange={this.handleChange}></textarea>
+              </div>
+            </center>
+
+              <input type="submit"></input>
+            </form>
+            </div>
         </div>
       </div>
     );

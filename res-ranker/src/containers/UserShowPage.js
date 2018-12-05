@@ -26,8 +26,6 @@ let renderButtons = (userPageToLoad, userPageToLoadFunction) => {
   } else {
     return (
     <div>
-      <button name='AddRestaurant' onClick={(e) => handleClick(e, userPageToLoadFunction)} >Add New Restaurant</button>
-      <br></br>
 
       <button name='renderRestaurants' onClick={(e) => handleClick(e, userPageToLoadFunction)} >View Your Restaurants</button>
       <br></br>
@@ -70,7 +68,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
           {userPageToLoad === 'editRanking' ? <h1>Edit Your Rankings</h1> : null}
 
           {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
-          {userPageToLoad === 'AddRestaurant' ? <AddRestaurant /> : null}
+
           {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
           {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
           {userPageToLoad === 'viewVisits' ? <ViewVisits /> : null}

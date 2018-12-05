@@ -195,13 +195,27 @@ ul.topnav li.right {float: right;}
   text-align: center;
 }
 
-.user-show-restaurant-visit {
+/* .user-show-restaurant-visit {
+  width: 60%;
   margin: 20px;
   display: flex;
   align-items: center;
-  max-height: 150px;
+  min-height: 150px;
   background-color: rgba(51, 51, 51, 0.5);
   border-radius: 15px;
+  align-content: center;
+} */
+
+.user-show-restaurant-visit {
+  display: flex;
+  width: 70%;
+  flex-direction: row;
+  overflow:hidden;
+  text-align: center;
+  background-color: rgba(51, 51, 51, .6);
+  border-radius: 10px;
+  margin: 10px;
+  align-items: center;
 }
 
 .rank-of-restaurant {
@@ -221,8 +235,7 @@ ul.topnav li.right {float: right;}
 
 .info-on-visit {
   width: 57%;
-  max-height: 150px;
-  margin: 0;
+  min-height: 150px;
 }
 
 
@@ -246,18 +259,49 @@ ul.topnav li.right {float: right;}
   flex-direction: column;
 }
 
+.drag-info {
+  text-align: center;
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
 .drag-info img{
   width: 300px;
   height: 200px;
+  border-radius: 20px;
+}
+
+.edit-rank-res-name {
+  width: 40%;
+}
+
+.edit-rank-res-name h2{
+  justify-content: center;
+  text-align: center;
 }
 
 .slider-holder {
-  font-family: 'Italianno';
-  font-size: 1.5em;
-  padding-bottom: 30px;
-  margin: 30px;
+  font-size: 1em;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  width: 80%;
   border-radius: 30px;
   background:  rgb(0,0,0,.35);
+}
+
+.slider-holder h1{
+  padding-top: 20px;
+  margin: 0px;
+}
+
+.visit-info {
+  margin-left: 150px;
+  margin-right: 150px;
+  border-radius: 30px;
+  background:  rgb(0,0,0,.35);
+  padding-top: 5px;
+  padding-bottom: 5px;
 }
 
 
@@ -265,7 +309,7 @@ ul.topnav li.right {float: right;}
 .members-image{
   margin-top: 20px;
   border-radius: 20px;
-  width: 80%;
+  width: 500px;
   height: 400px;
 }
 
@@ -295,9 +339,15 @@ ul.topnav li.right {float: right;}
 }
 
 .add-multi-box {
-  padding-top: 20px;
-
+  margin-top: 20px;
+  margin-left: 50px;
+  margin-right: 50px;
   width: 50%;
+}
+
+.add-multi-box-border {
+  background-color: rgba(0, 0, 0, 0);
+  width: 0%;
 }
 
 .search-multi-component {
@@ -312,7 +362,7 @@ ul.topnav li.right {float: right;}
   text-align: left;
   background-color: rgba(51, 51, 51, .6);
   border-radius: 10px;
-  margin: 20px;
+  margin: 10px;
   align-items: center;
 }
 
@@ -322,13 +372,13 @@ ul.topnav li.right {float: right;}
 
 .small-restaurant-component-img {
   width: 40%;
-  height: 150px;
+  height: 100px;
+  margin: 10px;
 
 }
 .small-restaurant-component-img img{
-  margin: 15%;
-  width: 80%;
-  height: 80%;
+  width: 100%;
+  height: 100%;
   border-radius: 10px;
 }
 
@@ -376,9 +426,88 @@ ul.topnav li.right {float: right;}
   text-align: left;
 }
 
-.drag-info img {
-  border-radius: 20px;
+
+
+.mapButtons {
+  margin-top: 10px;
+  text-align: center;
 }
+
+.mapButtons button {
+  width: 150px;
+  height: 25px;
+  border-radius: 25px;
+  font-size: 15px;
+  background-color: rgba(51, 51, 51, 1);
+  color: white
+}
+
+.mapButtons button:hover  {
+  background-color: grey;
+}
+
+.search-bar {
+  text-align: center;
+}
+
+.search-bar input{
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 25px;
+}
+/* New Visit Css */
+
+.new-visit-form {
+  margin-left: 20%;
+  margin-right: 20%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-radius: 20px;
+  background-color: rgba(51, 51, 51, .5);
+}
+.new-visit-date {
+  margin: 20px;
+}
+
+.new-visit-comment {
+  margin: 20px;
+}
+
+.new-visit-upload {
+  margin: 20px;
+  padding-left: 80px;
+}
+
+.new-visit-date input {
+  width: 100px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 10px;
+}
+
+.new-visit-meal-eaten input{
+  width: 200px;
+  height: 20px;
+  margin-top: 20px;
+  border-radius: 25px;
+}
+
+.pop-up-on-map {
+  min-width: 300px;
+  min-height: 300px;
+  background-color: rgba(51, 51, 51, .5);
+  padding-top: 10px;
+  padding-bottom: 10px;
+  border-radius: 10px;
+}
+
+.pop-up-on-map img {
+  border-radius: 10px;
+}
+
+
+
 
 /*
 .on-the-map:hover {

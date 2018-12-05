@@ -55,7 +55,7 @@ class MapShow extends Component {
     const {popupInfo} = this.state;
 
     return popupInfo && (
-      <Popup tipSize={5}
+      <Popup tipSize={15}
         anchor="top"
         longitude={popupInfo.location_long}
         latitude={popupInfo.location_lat}
@@ -74,7 +74,7 @@ class MapShow extends Component {
       <MapGL
         {...viewport}
         width="100%"
-        height="900px"
+        height="800px"
         mapStyle="mapbox://styles/mapbox/dark-v9"
         onViewportChange={this.updateViewport}
         mapboxApiAccessToken={token} >
