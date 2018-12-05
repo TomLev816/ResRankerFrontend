@@ -23,7 +23,7 @@ const NavBar = (props) => {
       </li>
       <li>
         <NavLink to="/ResRanker">
-          Add Restaurants
+          About ResRanker
         </NavLink>
       </li>
     </ul>

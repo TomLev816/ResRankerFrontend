@@ -47,35 +47,34 @@ let handleClick = (event, userPageToLoadFunction) => {
 }
 
 
-function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction }) {
-
-    return (
-      <div className='user-show-page'>
-        <div className='user-side-of-page'>
-          <div className='user-pic'>
-            <img src={userLoggedIn.image_src} alt=''></img>
-          </div>
-          <div className='user-info'>
-            <h1>Username: {userLoggedIn.username}</h1>
-          </div>
-          <div className='add-buttons'>
-            {renderButtons(userPageToLoad, userPageToLoadFunction)}
-          </div>
+function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction }){
+  return (
+    <div className='user-show-page'>
+      <div className='user-side-of-page'>
+        <div className='user-pic'>
+          <img src={userLoggedIn.image_src} alt=''></img>
         </div>
-        <div className='restaurant-side-of-page'>
-          {userPageToLoad === 'renderRestaurants' ? <h1>Restaurants</h1> : null}
-          {userPageToLoad === 'viewVisits' ? <h1>Your Recent Visits</h1> : null}
-          {userPageToLoad === 'editRanking' ? <h1>Edit Your Rankings</h1> : null}
-
-          {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
-
-          {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
-          {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
-          {userPageToLoad === 'viewVisits' ? <ViewVisits /> : null}
+        <div className='user-info'>
+          <h1>Username: {userLoggedIn.username}</h1>
+          <h3>Restaurants Visited: {userLoggedIn.user_restaurant_rankings.length}</h3>
+        </div>
+        <div className='add-buttons'>
+          {renderButtons(userPageToLoad, userPageToLoadFunction)}
         </div>
       </div>
-    );
+      <div className='restaurant-side-of-page'>
+        {userPageToLoad === 'renderRestaurants' ? <h1>Restaurants</h1> : null}
+        {userPageToLoad === 'viewVisits' ? <h1>Your Recent Visits</h1> : null}
+        {userPageToLoad === 'editRanking' ? <h1>Edit Your Rankings</h1> : null}
 
+        {userPageToLoad === 'renderRestaurants' ? renderRestaurants(rankedRestaurants, userLoggedIn) : null}
+
+        {userPageToLoad === 'editRanking' ? <EditRanking /> : null}
+        {userPageToLoad === 'searchRestaurants' ? <Redirect to={'/view-restaurants'} /> : null}
+        {userPageToLoad === 'viewVisits' ? <ViewVisits /> : null}
+      </div>
+    </div>
+  );
 }
 
 const mapStateToProps = (state) => {

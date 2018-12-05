@@ -10,7 +10,7 @@ export default class Home extends Component {
         <div className='app-welcome'>
           <div className='welcome-text'>
             <h1>Welcome to ResRanker</h1>
-            <h3>Keep track of everywhere You've Eaten</h3>
+            <h3>Keep rank of everywhere You've Eaten</h3>
           </div>
         </div>
         <div className='home-main-container'>
