@@ -24,7 +24,7 @@ class MapShow extends Component {
     super(props);
     this.state = {
       viewport: {
-        latitude: 40.73,
+        latitude: 40.70,
         longitude: -73.95,
         zoom: 11,
         bearing: 0,

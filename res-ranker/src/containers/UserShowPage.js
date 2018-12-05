@@ -48,6 +48,7 @@ let handleClick = (event, userPageToLoadFunction) => {
 
 
 function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPageToLoadFunction, userMapLoadFunction }){
+  console.log(rankedRestaurants.length);
   return (
     <div className='user-show-page'>
       <div className='user-side-of-page'>
@@ -56,7 +57,7 @@ function UserShowPage({userLoggedIn, userPageToLoad, rankedRestaurants, userPage
         </div>
         <div className='user-info'>
           <h1>Username: {userLoggedIn.username}</h1>
-          <h3>Restaurants Visited: {userLoggedIn.user_restaurant_rankings.length}</h3>
+          <h3>Restaurants Visited: {rankedRestaurants.length}</h3>
         </div>
         <div className='add-buttons'>
           {renderButtons(userPageToLoad, userPageToLoadFunction)}

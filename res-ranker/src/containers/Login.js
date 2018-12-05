@@ -62,6 +62,7 @@ class Login extends Component {
                 <div className='half-login'>
                   <input
                     name='password'
+                    type='password'
                     placeholder='Password'
                     value={password}
                     onChange={this.handleChange}>
