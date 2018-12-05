@@ -12,7 +12,6 @@ export default class Home extends Component {
             <h1>Welcome to ResRanker</h1>
             <h3>Keep rank of everywhere You've Eaten</h3>
           </div>
-        </div>
         <div className='home-main-container'>
           <div className='home-half-container'>
             <div className="home-info-wrapper">
@@ -31,6 +30,7 @@ export default class Home extends Component {
             </NavLink>
           </div>
         </div>
+      </div>
       </div>
     );
   }

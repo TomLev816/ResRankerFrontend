@@ -22,7 +22,7 @@ const NavBar = (props) => {
         </NavLink>
       </li>
       <li>
-        <NavLink to="/ResRanker">
+        <NavLink to="/about">
           About ResRanker
         </NavLink>
       </li>

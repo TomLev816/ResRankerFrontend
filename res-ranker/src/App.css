@@ -2,25 +2,25 @@
 /* Small devices (landscape phones, 576px and up) */
 .App {
   background-color:  rgba(220, 220, 220, 1);
-  min-height: 700px;
+  min-height: 800px;
 }
 
 /* Medium devices (tablets, 768px and up) */
 @media (min-width: 768px) {  }
-
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
+@media (min-width: 992px) {}
+
   .home-main-container {
     display: flex;
     padding-top: 50px;
   }
 
   .home-main-container .button {
-    width: 150px;
-    height: 25px;
+    width: 250px;
+    height: 50px;
     border-radius: 25px;
     font-size: 15px;
-    background-color: rgba(51, 51, 51, 1);
+    background-color: rgba(51, 51, 51, .9);
     color: white
   }
 
@@ -31,7 +31,7 @@
   .home-half-container {
     width: 50%;
   }
-}
+
 
 .visits-page {
   text-align: center;
@@ -73,7 +73,7 @@ ul.topnav li.right {float: right;}
 
 /* HomePage */
 .app-welcome {
-  height: 500px;
+  height: 800px;
   background-image:
   url('./images/Pier-A-Harbor-House.jpg');
   background-size: cover;
@@ -81,6 +81,7 @@ ul.topnav li.right {float: right;}
 }
 
 .welcome-text {
+  font-size: 1.5em;
   text-align: center;
   padding-top: 150px;
   color: white;
@@ -95,24 +96,20 @@ ul.topnav li.right {float: right;}
 
 
 
-/* Login page */
+/* rgba(193, 128, 215, page */
 .app-name h1{
   padding-top: 40px;
   margin-top: 0px;
-  text-shadow:
-  -1px -1px 0 rgba(255, 255, 255, 1),
-  1px -1px 0 rgba(255, 255, 255, 1),
-  -1px 1px 0 rgba(255, 255, 255, 1),
-  1px 1px 0 rgba(255, 255, 255, 1);
 }
 
 .login-page-contianer {
   position: fixed;
-  top: 100px;
-  padding-bottom: 25px;
+  top: 20%;
+  padding: 0px 30px 60px 30px;
+
   background-color: rgba(51, 51, 51, .2);
-  margin-left: 35%;
-  margin-right: 35%;
+  margin-left: 40%;
+  margin-right: 40%;
   border-radius: 25px;
 }
 
@@ -162,14 +159,35 @@ ul.topnav li.right {float: right;}
 
 /* Signup Page */
 
-.signup-page {
-  margin-top: 20px;
-  text-align: center;
+.signup-page-pic {
+  margin-top: 0px;
+  min-height: 700px;
+  background-image:
+  url('./images/LArtusi.jpg');
+  background-size: cover;
+  background-position: center center;
 }
 
-.welcome-signup{
-  font-size: 40px;
+.signup-page {
+  position: fixed;
+  margin-left: 30%;
+  margin-right: 30%;
+  top: 20%;
+  margin-top: 0px;
+  text-align: center;
+  background-color: rgba(51, 51, 51, .7);
+  padding: 20px 30px 30px 30px;
+  border-radius: 25px;
 }
+
+.welcome-signup {
+  font-size: 50px;
+  padding-top: 0px;
+  margin-top: 0px;
+  color: rgba(255,255,255,1);
+}
+
+
 
 .signup-form input {
   width: 200px;

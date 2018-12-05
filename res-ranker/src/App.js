@@ -16,7 +16,7 @@ import AddNewVisit from './containers/AddNewVisit'
 import RestaurantInfoPage from './containers/RestaurantInfoPage'
 import UserMapPage from './containers/UserMapPage'
 import ViewVisits from './containers/ViewVisits'
-
+import About from './containers/About'
 
 class App extends Component {
 
@@ -50,6 +50,7 @@ class App extends Component {
             <Route path='/add-new-visit' component={AddNewVisit} />
             <Route path='/view-restaurants' component={RestaurantInfoPage} />
             <Route path='/visits' component={ViewVisits} />
+            <Route path='/about' component={About} />
 
           </div>
         </Router>

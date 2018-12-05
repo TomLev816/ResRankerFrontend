@@ -56,32 +56,33 @@ class Signup extends Component {
   render() {
     const {firstName, lastName, username, password, image_src} = this.state
     return (
-      <div className='signup-page'>
-        {this.state.redirect ? <Redirect to='/add-restaurants' /> : null}
-        <div className='welcome-signup'>
-          Welcome to ResRanker
-        </div>
-        <div className='signup-form'>
-          <form onSubmit={this.handleSubmit}>
+      <div className='signup-page-pic'>
+        <div className='signup-page'>
+          {this.state.redirect ? <Redirect to='/add-restaurants' /> : null}
+          <div className='welcome-signup'>
+            Welcome to ResRanker
+          </div>
+          <div className='signup-form'>
+            <form onSubmit={this.handleSubmit}>
+              <input name='firstName' placeholder='  Name'  value={firstName} onChange={this.handleChange} />
+              <br></br>
 
-            <input name='firstName' placeholder='Name'  value={firstName} onChange={this.handleChange} />
-            <br></br>
+              <input name='lastName'  placeholder='  Email' value={lastName} onChange={this.handleChange} />
+              <br></br>
 
-            <input name='lastName'  placeholder='Email' value={lastName} onChange={this.handleChange} />
-            <br></br>
+              <input name='username'  placeholder='  Username' value={username} onChange={this.handleChange}/>
+              <br></br>
 
-            <input name='username'  placeholder='Username' value={username} onChange={this.handleChange}/>
-            <br></br>
+              <input name='password'  placeholder='  Password' value={password} onChange={this.handleChange} />
+              <br></br>
 
-            <input name='password'  placeholder='Password' value={password} onChange={this.handleChange} />
-            <br></br>
-
-            <input name='image_src' placeholder='Image'  value={image_src} onChange={this.handleChange} />
-            <br></br>
-            <div className='submit-signup'>
-              <input type='submit'/>
-            </div>
-          </form>
+              <input name='image_src' placeholder='  Image'  value={image_src} onChange={this.handleChange} />
+              <br></br>
+              <div className='submit-signup'>
+                <input type='submit'/>
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     );
