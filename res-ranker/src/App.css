@@ -1,7 +1,7 @@
 
 /* Small devices (landscape phones, 576px and up) */
 .App {
-  background-color:  rgba(220, 220, 220, 1);
+  background-color:  rgba(255, 255, 255, 1);
   min-height: 800px;
 }
 
@@ -13,6 +13,8 @@
   .home-main-container {
     display: flex;
     padding-top: 50px;
+    margin-left: 15%;
+    margin-right: 15%;
   }
 
   .home-main-container .button {
@@ -20,12 +22,12 @@
     height: 50px;
     border-radius: 25px;
     font-size: 15px;
-    background-color: rgba(51, 51, 51, .9);
+    background-color: rgba(240, 180, 170, .9);
     color: white
   }
 
   .home-main-container .button:hover  {
-    background-color: grey;
+    background-color: salmon;
   }
 
   .home-half-container {
@@ -46,7 +48,7 @@ ul.topnav {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: #333;
+    background-color: salmon
 }
 
 ul.topnav li {float: left;}
@@ -59,9 +61,9 @@ ul.topnav li a {
     text-decoration: none;
 }
 
-ul.topnav li a:hover:not(.active) {background-color: #111;}
+ul.topnav li a:hover:not(.active) {background-color: rgba(254, 100, 160, 1)}
 
-ul.topnav li a.active {background-color: #4CAF50;}
+ul.topnav li a.active {background-color: rgba(254, 100, 140, 1)}
 
 ul.topnav li.right {float: right;}
 
@@ -93,7 +95,7 @@ ul.topnav li.right {float: right;}
 }
 
 .home-main-loading {
-  background-color: rgba(51, 51, 51, .6);
+  background-color: rgba(240, 180, 170, .6);
   color: white;
   margin-left: 30%;
   margin-right: 30%;
@@ -119,9 +121,9 @@ ul.topnav li.right {float: right;}
   top: 20%;
   padding: 0px 30px 60px 30px;
 
-  background-color: rgba(51, 51, 51, .2);
-  margin-left: 40%;
-  margin-right: 40%;
+  background-color: rgba(240, 180, 170, .2);
+  margin-left: 38%;
+  margin-right: 38%;
   border-radius: 25px;
 }
 
@@ -159,12 +161,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 15px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .login-submit button:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 /* End Login page CSS*/
@@ -187,7 +189,7 @@ ul.topnav li.right {float: right;}
   top: 20%;
   margin-top: 0px;
   text-align: center;
-  background-color: rgba(51, 51, 51, .7);
+  background-color: rgba(240, 180, 170, .7);
   padding: 20px 30px 30px 30px;
   border-radius: 25px;
 }
@@ -214,12 +216,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 15px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .submit-signup input:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 .add-buttons button {
@@ -228,12 +230,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 12px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .add-buttons button:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 /* end Signup Page */
@@ -269,7 +271,7 @@ ul.topnav li.right {float: right;}
   display: flex;
   align-items: center;
   min-height: 150px;
-  background-color: rgba(51, 51, 51, 0.5);
+  background-color: rgba(240, 180, 170, 0.5);
   border-radius: 15px;
   align-content: center;
 } */
@@ -281,7 +283,7 @@ ul.topnav li.right {float: right;}
   overflow:hidden;
   text-align: center;
   box-shadow: 10px 10px rgba(51, 51, 51, .2);
-  background-color: rgba(51, 51, 51, .6);
+  background-color: rgba(240, 180, 170, .6);
   border-radius: 10px;
   margin: 20px;
   align-items: center;
@@ -314,12 +316,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 12px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .rankings-container button:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 .rankings-container {
@@ -357,7 +359,7 @@ ul.topnav li.right {float: right;}
   width: 614px;
   border-radius: 30px;
   box-shadow: 10px 10px 5px 5px grey;
-  background:  rgba(51, 51, 51, .4);
+  background:  rgba(240, 180, 170, .4);
 }
 
 
@@ -372,7 +374,7 @@ ul.topnav li.right {float: right;}
     margin-left: 15px;
     margin-right: 15px;
     border-radius: 30px;
-    background:  rgba(51, 51, 51, .4);
+    background:  rgba(240, 180, 170, .4);
     padding-top: 5px;
     padding-bottom: 5px;
 }
@@ -438,14 +440,14 @@ ul.topnav li.right {float: right;}
   flex-direction: row;
   overflow:hidden;
   text-align: left;
-  background-color: rgba(51, 51, 51, .6);
+  background-color: rgba(240, 180, 170, .6);
   border-radius: 10px;
   margin: 10px;
   align-items: center;
 }
 
 .small-restaurant-component:hover {
-  background-color: rgba(51, 51, 51, .8);
+  background-color: rgba(240, 180, 170, .8);
 }
 
 .small-restaurant-component-img {
@@ -516,12 +518,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 15px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .mapButtons button:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 .search-bar {
@@ -542,7 +544,7 @@ ul.topnav li.right {float: right;}
   padding-top: 2%;
   padding-bottom: 2%;
   border-radius: 20px;
-  background-color: rgba(51, 51, 51, .5);
+  background-color: rgba(240, 180, 170, .5);
 }
 .new-visit-date {
   margin: 20px;
@@ -574,7 +576,7 @@ ul.topnav li.right {float: right;}
 .pop-up-on-map {
   min-width: 300px;
   min-height: 300px;
-  background-color: rgba(51, 51, 51, .5);
+  background-color: rgba(240, 180, 170, .5);
   padding-top: 10px;
   padding-bottom: 10px;
   border-radius: 10px;
@@ -597,12 +599,12 @@ ul.topnav li.right {float: right;}
   height: 25px;
   border-radius: 25px;
   font-size: 15px;
-  background-color: rgba(51, 51, 51, 1);
+  background-color: rgba(240, 180, 170, 1);
   color: white
 }
 
 .add-multi-box button:hover  {
-  background-color: grey;
+  background-color: salmon;
 }
 
 /*
@@ -649,6 +651,7 @@ div.card {
 
   .user-side-of-page {
     width: 100%;
+    margin: 0px;
     border: none;
     text-align: center;
   }
@@ -665,22 +668,80 @@ div.card {
 
   .user-show-page {
     width: 100%;
+    margin-left: 0px;
+  }
+
+  .members-image {
+    max-width: 100%;
   }
 
   .user-pic img{
     margin: 0px;
     box-shadow: 5px 5px rgba(51, 51, 51, .2);
-    width: 576px;
+    width: 100%;
     height: 100%;
     border-radius: 10%;
   }
 
+  .small-restaurant-component-img {
+    display: none;
+  }
+
   .small-restaurant-component-img img {
     display: none;
+    padding: 0px;
   }
 
   .photo-of-restaurant {
     display: none;
+  }
+
+  .slider-holder {
+    width: 100%;
+    margin-left: 0px
+  }
+
+  .small-restaurant-component {
+    align-items: center;
+    padding: 0px;
+  }
+
+  .small-restaurant-component-info {
+    padding: 0px;
+    text-align: center;
+    width: 100%;
+  }
+
+  .mapButtons button {
+    width: 100%;
+  }
+
+  .small-restaurant-component-info h2{
+    text-align: center;
+    padding: 0px;
+  }
+
+  .home-main-container {
+    flex-direction: column;
+  }
+
+  .login-page-contianer {
+    position: fixed;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-top: 50px;
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .edit-rank-res-img {
+    display: none;
+  }
+
+  .signup-page {
+    margin-top: 50px;
+    margin-left: 0px;
+    margin-right: 0px;
   }
 
 }

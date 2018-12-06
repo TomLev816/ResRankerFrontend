@@ -51,8 +51,8 @@ class SearchMultiRestaurants extends Component {
         <input name='search'className='search-bar' placeholder=' Search for Restaurants' value={search} onChange={this.handleChange}/>
         {this.filterRestaurntsWithSearch()}
         <br></br>
-        <button name='previous' onClick={this.changeRestaurants}> Get Previous Restaurants </button>
-        <button name='next' onClick={this.changeRestaurants}> Get More Restaurants </button>
+        <button name='previous' onClick={this.changeRestaurants}> Previous </button>
+        <button name='next' onClick={this.changeRestaurants}> Get More </button>
       </div>
     );
   }

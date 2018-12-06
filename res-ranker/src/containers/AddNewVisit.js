@@ -107,7 +107,7 @@ class AddNewVisit extends Component {
 
             <center>
               <div className='new-visit-comment'>
-                <textarea name='comment' rows="26" cols="50" value={newVisitForm.comment} placeholder='Enter Comment' onChange={this.handleChange}></textarea>
+                <textarea name='comment' rows="22" cols="50" value={newVisitForm.comment} placeholder='Enter Comment' onChange={this.handleChange}></textarea>
               </div>
             </center>
 
