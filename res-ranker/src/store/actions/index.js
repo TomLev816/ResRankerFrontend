@@ -1,11 +1,3 @@
-export const getRestaurants = (apiData) => {
-  console.log(apiData);
-  return {
-    type: "LOAD_RESTAURANTS_FROM_API",
-    payload: apiData
-  }
-}
-
 export const getUsers = (apiData) => {
   console.log(apiData)
   return {
@@ -137,6 +129,22 @@ export const creatNewVisit = (formUpload, allVisits) => {
      .then(visit => {
        console.log('the visit ', visit, 'allVisits  ',  allVisits);
        dispatch({ type: 'NEW_VISIT_RESTAURANT', payload: [...allVisits, visit] })
-     })
- }
+    })
+  }
+}
+
+
+
+export const getAllRestaurants = () => {
+  console.log('here');
+  return (dispatch) => {
+    dispatch({ type: 'GETTING_RESTAURANTS', payload: false})
+    fetch('http://localhost:4000/api/v1/restaurants')
+      .then(res => res.json())
+      .then(restaurnats => {
+        console.log(restaurnats);
+        dispatch({type: 'LOAD_RESTAURANTS_FROM_API', payload: restaurnats})
+        dispatch({ type: 'GETTING_RESTAURANTS', payload: true})
+      } )
+  }
 }

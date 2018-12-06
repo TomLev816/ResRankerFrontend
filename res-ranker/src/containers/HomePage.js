@@ -1,17 +1,13 @@
 import React, { Component } from 'react';
 import {NavLink} from 'react-router-dom'
+import {connect} from 'react-redux'
 
+class Home extends Component {
 
-export default class Home extends Component {
-
-  render() {
-    return (
-      <div>
-        <div className='app-welcome'>
-          <div className='welcome-text'>
-            <h1>Welcome to ResRanker</h1>
-            <h3>Keep rank of everywhere You've Eaten</h3>
-          </div>
+  renderbuttons = () => {
+    console.log(this.props.loadedRestaurants);
+    if (this.props.loadedRestaurants) {
+      return (
         <div className='home-main-container'>
           <div className='home-half-container'>
             <div className="home-info-wrapper">
@@ -30,8 +26,35 @@ export default class Home extends Component {
             </NavLink>
           </div>
         </div>
+      )
+    } else {
+      return (
+        <div>
+          <h2>Loading Restaurnats...</h2>
+        </div>
+        )
+    }
+  }
+
+  render() {
+    return (
+      <div>
+        <div className='app-welcome'>
+          <div className='welcome-text'>
+            <h1>Welcome to ResRanker</h1>
+            <h3>Keep rank of everywhere You've Eaten</h3>
+          </div>
+          {this.renderbuttons()}
       </div>
       </div>
     );
   }
 }
+
+const mapStateToProps = (state) => {
+  return {
+    loadedRestaurants: state.loadedRestaurants
+  }
+}
+
+export default connect(mapStateToProps)(Home)

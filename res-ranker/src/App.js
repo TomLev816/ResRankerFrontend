@@ -3,7 +3,7 @@ import './App.css';
 
 import { connect } from "react-redux";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
-import { getRestaurants, getUsers, getVisits } from './store/actions/'
+import { getUsers, getVisits, getAllRestaurants } from './store/actions/'
 
 import NavBar from './components/NavBar'
 import HomePage from './containers/HomePage'
@@ -18,12 +18,11 @@ import ViewVisits from './containers/ViewVisits'
 import About from './containers/About'
 import ViewAllVisits from './components/ViewAllVisits'
 
+
 class App extends Component {
 
   componentDidMount() {
-    fetch('http://localhost:4000/api/v1/restaurants')
-      .then(res => res.json())
-      .then(resJson => this.props.loadRestaurantsFromApi(resJson))
+    this.props.loadRestaurantsFromApi()
 
     fetch('http://localhost:4000/api/v1/users')
       .then(res => res.json())
@@ -68,7 +67,7 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = dispatch => ({
-  loadRestaurantsFromApi: apiRestaurantData => dispatch(getRestaurants(apiRestaurantData)),
+  loadRestaurantsFromApi: () => dispatch(getAllRestaurants()),
   loadUsersFromApi: apiUserData => dispatch(getUsers(apiUserData)),
   loadVisitsFromApi: apiVisitData => dispatch(getVisits(apiVisitData)),
 });
