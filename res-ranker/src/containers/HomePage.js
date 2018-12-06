@@ -29,7 +29,7 @@ class Home extends Component {
       )
     } else {
       return (
-        <div>
+        <div className='home-main-loading'>
           <h2>Loading Restaurnats...</h2>
         </div>
         )
