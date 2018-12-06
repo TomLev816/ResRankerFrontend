@@ -1,8 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux'
 import RestaurantUserPage from '../components/RestaurantUserPage.js'
-import {Redirect, NavLink} from 'react-router-dom'
-import AddRestaurant from '../components/AddRestaurant'
+import {Redirect} from 'react-router-dom'
+
 import EditRanking from '../components/EditRanking'
 import ViewVisits from './ViewVisits'
 import ViewAllVisits from '../components/ViewAllVisits'

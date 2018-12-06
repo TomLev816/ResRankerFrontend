@@ -25,6 +25,7 @@ class Signup extends Component {
     event.preventDefault()
     const {firstName, lastName, username, password, image_src} = this.state
     if (firstName && lastName && username && password && image_src) {
+      
       fetch('http://localhost:4000/api/v1/users', {
         method: 'POST',
         body: JSON.stringify({

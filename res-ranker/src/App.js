@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-// import Restaurants from './components/Restaurants'
-// import Users from './components/Users'
+
 import { connect } from "react-redux";
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import { getRestaurants, getUsers, getVisits } from './store/actions/'

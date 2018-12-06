@@ -348,6 +348,8 @@ ul.topnav li.right {float: right;}
   background:  rgba(51, 51, 51, .4);
 }
 
+
+
 .slider-holder h1{
   padding-top: 20px;
   margin: 0px;
@@ -637,11 +639,36 @@ div.card {
     width: 100%;
     border: none;
     text-align: center;
-    position: fixed;
   }
 
   .restaurant-side-of-page {
     width: 100%;
+  }
+
+  .user-show-restaurant-visit {
+    margin-left: 0px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .user-show-page {
+    width: 100%;
+  }
+
+  .user-pic img{
+    margin: 0px;
+    box-shadow: 5px 5px rgba(51, 51, 51, .2);
+    width: 576px;
+    height: 100%;
+    border-radius: 10%;
+  }
+
+  .small-restaurant-component-img img {
+    display: none;
+  }
+
+  .photo-of-restaurant {
+    display: none;
   }
 
 }
