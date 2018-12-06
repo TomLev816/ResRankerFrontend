@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux'
-import { userLoggedInAction } from '../store/actions/'
+import { userLoggedInAction, addNewUser } from '../store/actions/'
 import { Redirect} from 'react-router-dom'
 
 
@@ -25,7 +25,7 @@ class Signup extends Component {
     event.preventDefault()
     const {firstName, lastName, username, password, image_src} = this.state
     if (firstName && lastName && username && password && image_src) {
-      
+
       fetch('http://localhost:4000/api/v1/users', {
         method: 'POST',
         body: JSON.stringify({
@@ -43,11 +43,14 @@ class Signup extends Component {
         }
       })
         .then(res => res.json())
-        .then(user => this.props.userLoggedInFunction(user),
+        .then(user => {
+          this.props.userLoggedInFunction(user)
+          this.props.addNewUserFunction(user)
           this.setState({
             redirect: true,
-          }
-        )
+          })
+        }
+
         )
     } else {
       console.log('form NOT FIlled out yo');
@@ -98,6 +101,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
+    addNewUserFunction: user => dispatch(addNewUser(user)),
     userLoggedInFunction: user => dispatch(userLoggedInAction(user))
   }
 }
