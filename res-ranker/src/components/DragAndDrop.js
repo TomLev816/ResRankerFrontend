@@ -59,12 +59,14 @@ class DragAndDrop extends Component {
       <center>
       <DragDropContext onDragEnd={this.onDragEnd}>
         <Droppable droppableId="droppable">
+
           {(provided, snapshot) => (
             <div ref={provided.innerRef} style={getListStyle(snapshot.isDraggingOver)}>
               {this.props.rankedRestaurants ?
                 this.props.rankedRestaurants.map((item, index) => {
-                  let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
 
+                  //find restaurant to show in dnd list
+                  let restaurant = this.props.allRestaurants.find(rest => rest.id === item.restaurant_id)
                   return (
                     <Draggable key={restaurant.id} draggableId={restaurant.id} index={index}>
                       {(provided, snapshot) => (
@@ -89,6 +91,7 @@ class DragAndDrop extends Component {
               {provided.placeholder}
             </div>
           )}
+
         </Droppable>
       </DragDropContext>
       </center>

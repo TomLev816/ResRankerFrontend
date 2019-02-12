@@ -30,7 +30,7 @@ class Home extends Component {
     } else {
       return (
         <div className='home-main-loading'>
-          <h2>Loading Restaurnats...</h2>
+          <h2>Loading Restaurants...</h2>
         </div>
         )
     }

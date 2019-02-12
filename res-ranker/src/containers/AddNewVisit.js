@@ -27,15 +27,23 @@ class AddNewVisit extends Component {
 
   handleSubmit = (event) => {
     event.preventDefault()
-    const {allVisits, visitRestaurant, userLoggedIn, rankedRestaurants } = this.props
-    let restToAddVisitTo = rankedRestaurants.find(rest => rest.restaurant_id === visitRestaurant.id)
+
+    // get info from props/redux visitFormChange
+    const {allVisits, visitRestaurant, userLoggedIn } = this.props
+
+    // get info from users filled out form
     let {date, comment, mealEaten} = this.props.newVisitForm
 
+    //get the image from the page
     const image = event.target.querySelector('#file-input').files[0]
-    console.log(image);
+
+    // FormData object lets you compile a set of key/value pairs to send using XMLHttpRequest
     let formUpload = new FormData()
+
+    // Image file added to form
     formUpload.append("image", image)
 
+    // create object of visit data
     let visitData = {
       "restaurant_id": visitRestaurant.id,
       "user_id": userLoggedIn.id,
@@ -44,16 +52,13 @@ class AddNewVisit extends Component {
       "meal_eaten": mealEaten,
     }
 
+    // add visit data to formdata with image
     formUpload.append("visitData", JSON.stringify(visitData))
 
 
+    // console.log('ID', visitRestaurant.id , userLoggedIn.id , 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten, "Allthe visits", allVisits);
 
-
-
-    console.log('ID', visitRestaurant.id , userLoggedIn.id , 'date:', date, 'comment:', comment, 'mealEaten:', mealEaten, "Allthe visits", allVisits);
-
-
-
+    // sends visit to action/index.js/creatNewVisit
     this.props.newVisitToDatabase(formUpload, allVisits)
 
     this.props.newVisitFormChange({date: new Date(), comment:"", mealEaten:""})

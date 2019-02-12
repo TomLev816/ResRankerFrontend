@@ -6,7 +6,7 @@ import { rankedRestaurantsAction, userLoggedInAction, userPageToLoadAction } fro
 import { Redirect} from 'react-router-dom'
 import DragAndDrop from '../components/DragAndDrop'
 
-
+//this page is used on create new user
 class AddMultipleRestaurants extends Component {
 
 state = {

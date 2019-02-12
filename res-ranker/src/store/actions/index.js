@@ -118,12 +118,12 @@ export const creatNewUserRestaurantRank = (restaurant, userLoggedIn, rankedResta
  }
 }
 
-export const creatNewVisit = (formUpload, allVisits) => {
+export const creatNewVisit = (newVisit, allVisits) => {
  return (dispatch) => {
    dispatch({ type: 'CREATE_NEW_VISIT' })
    fetch("http://localhost:4000/api/v1/visits", {
     method: "POST",
-    body: formUpload
+    body: newVisit
   })
      .then(response => response.json())
      .then(visit => {
