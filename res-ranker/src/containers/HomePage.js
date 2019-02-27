@@ -5,7 +5,7 @@ import {connect} from 'react-redux'
 class Home extends Component {
 
   renderbuttons = () => {
-    console.log(this.props.loadedRestaurants);
+    // if true all restaurants are loaded. else waiting for loading to finish
     if (this.props.loadedRestaurants) {
       return (
         <div className='home-main-container'>
