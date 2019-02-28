@@ -32,6 +32,7 @@ class Signup extends Component {
           first: firstName,
           last: lastName,
           username: username,
+          password_digest: password,
           visit_count: 0,
           image_src: image_src,
           restaurants_ranked: 0,
